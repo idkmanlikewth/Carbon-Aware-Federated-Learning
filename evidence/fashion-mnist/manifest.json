@@ -1,0 +1,263 @@
+{
+  "schema_version": 1,
+  "status": "complete",
+  "started_utc": "2026-11-17T15:20:29.756378+00:00",
+  "config": {
+    "dataset": "fashion-mnist",
+    "clients": 10,
+    "rounds": 5,
+    "episodes": 8,
+    "train_samples": 1000,
+    "eval_samples": 200,
+    "local_epochs": 1,
+    "batch_size": 64,
+    "learning_rate": 0.05,
+    "alpha": 0.5,
+    "participation": 0.2,
+    "seeds": [
+      11,
+      22,
+      33
+    ],
+    "preferences": [
+      [
+        0.7,
+        0.1,
+        0.1,
+        0.1
+      ],
+      [
+        0.25,
+        0.25,
+        0.25,
+        0.25
+      ],
+      [
+        0.1,
+        0.1,
+        0.7,
+        0.1
+      ]
+    ],
+    "policies": [
+      "adaptive",
+      "fixed",
+      "unconditioned",
+      "static_carbon",
+      "raw_reward",
+      "random",
+      "carbon",
+      "fair"
+    ],
+    "download": true,
+    "data_dir": "data",
+    "latency_scale_s": 120.0,
+    "carbon_scale_g": 5.0,
+    "accuracy_gain_scale": 0.1,
+    "gamma": 0.95,
+    "replay_capacity": 10000,
+    "replay_batch": 32,
+    "target_interval": 25
+  },
+  "measurement_type": "SIMULATED_INFRASTRUCTURE; actual classifier evaluation",
+  "carbon_model": "Scenario W, seconds and gCO2e/kWh; includes idle clients and 30W coordinator at 400g/kWh. Not measured hardware energy or wall-clock latency.",
+  "python": "3.11.9",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "versions": {
+    "torch": "2.5.1+cpu",
+    "torchvision": "0.20.1+cpu",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1"
+  },
+  "git_commit": "14db423e952ee90ab881c518027a2733150705ff",
+  "git_dirty": true,
+  "datasets": {
+    "11": {
+      "source": "torchvision.datasets.FashionMNIST:official-train-and-test",
+      "subset_sha256": "febd5bb778ae1dbe34edba63778f521b2cf11e1cd651af8cd7f304d9b026c857",
+      "train_samples": 1000,
+      "validation_samples": 100,
+      "test_samples": 100,
+      "partition_sizes": [
+        84,
+        153,
+        167,
+        80,
+        93,
+        70,
+        71,
+        28,
+        71,
+        183
+      ]
+    },
+    "22": {
+      "source": "torchvision.datasets.FashionMNIST:official-train-and-test",
+      "subset_sha256": "76dbec499ed56f37720d583d36188f315379d96ec610fa8da34c394d1a485e71",
+      "train_samples": 1000,
+      "validation_samples": 100,
+      "test_samples": 100,
+      "partition_sizes": [
+        142,
+        92,
+        70,
+        139,
+        67,
+        58,
+        79,
+        78,
+        100,
+        175
+      ]
+    },
+    "33": {
+      "source": "torchvision.datasets.FashionMNIST:official-train-and-test",
+      "subset_sha256": "c5e23e79abddfaf8c253971aa002c38f16ae21f01e07219b1bc2e6b34fba85aa",
+      "train_samples": 1000,
+      "validation_samples": 100,
+      "test_samples": 100,
+      "partition_sizes": [
+        118,
+        159,
+        98,
+        46,
+        75,
+        102,
+        94,
+        77,
+        140,
+        91
+      ]
+    }
+  },
+  "training": [
+    {
+      "seed": 11,
+      "policy": "adaptive",
+      "updates": 9,
+      "loss_last": 0.02073110267519951,
+      "checkpoint": "11_adaptive.pt"
+    },
+    {
+      "seed": 11,
+      "policy": "fixed",
+      "updates": 9,
+      "loss_last": 0.016491729766130447,
+      "checkpoint": "11_fixed.pt"
+    },
+    {
+      "seed": 11,
+      "policy": "unconditioned",
+      "updates": 9,
+      "loss_last": 0.025097861886024475,
+      "checkpoint": "11_unconditioned.pt"
+    },
+    {
+      "seed": 11,
+      "policy": "static_carbon",
+      "updates": 9,
+      "loss_last": 0.021556761115789413,
+      "checkpoint": "11_static_carbon.pt"
+    },
+    {
+      "seed": 11,
+      "policy": "raw_reward",
+      "updates": 9,
+      "loss_last": 0.338304728269577,
+      "checkpoint": "11_raw_reward.pt"
+    },
+    {
+      "seed": 22,
+      "policy": "adaptive",
+      "updates": 9,
+      "loss_last": 0.012125402688980103,
+      "checkpoint": "22_adaptive.pt"
+    },
+    {
+      "seed": 22,
+      "policy": "fixed",
+      "updates": 9,
+      "loss_last": 0.008948064409196377,
+      "checkpoint": "22_fixed.pt"
+    },
+    {
+      "seed": 22,
+      "policy": "unconditioned",
+      "updates": 9,
+      "loss_last": 0.012989534065127373,
+      "checkpoint": "22_unconditioned.pt"
+    },
+    {
+      "seed": 22,
+      "policy": "static_carbon",
+      "updates": 9,
+      "loss_last": 0.011745325289666653,
+      "checkpoint": "22_static_carbon.pt"
+    },
+    {
+      "seed": 22,
+      "policy": "raw_reward",
+      "updates": 9,
+      "loss_last": 0.3860204517841339,
+      "checkpoint": "22_raw_reward.pt"
+    },
+    {
+      "seed": 33,
+      "policy": "adaptive",
+      "updates": 9,
+      "loss_last": 0.013805710710585117,
+      "checkpoint": "33_adaptive.pt"
+    },
+    {
+      "seed": 33,
+      "policy": "fixed",
+      "updates": 9,
+      "loss_last": 0.013479245826601982,
+      "checkpoint": "33_fixed.pt"
+    },
+    {
+      "seed": 33,
+      "policy": "unconditioned",
+      "updates": 9,
+      "loss_last": 0.01430389005690813,
+      "checkpoint": "33_unconditioned.pt"
+    },
+    {
+      "seed": 33,
+      "policy": "static_carbon",
+      "updates": 9,
+      "loss_last": 0.014045040123164654,
+      "checkpoint": "33_static_carbon.pt"
+    },
+    {
+      "seed": 33,
+      "policy": "raw_reward",
+      "updates": 9,
+      "loss_last": 1.1412763595581055,
+      "checkpoint": "33_raw_reward.pt"
+    }
+  ],
+  "engine_sha256": "6cdbad31418f5d122c074d0103258ea8b07f888ce46f3d3d72097d11af755dd1",
+  "wall_seconds": 46.91190050000023,
+  "completed_utc": "2026-11-17T15:21:16.668001+00:00",
+  "artifact_sha256": {
+    "11_adaptive.pt": "17f08b2438b3148fdd52752e97fe17c4f0ef85ac896dd85a95914acfbf8ec43a",
+    "11_fixed.pt": "e104ac5627ff7971ecd7b2f480d0be33034e92aa96038576e3adcb3f7b5acff7",
+    "11_raw_reward.pt": "49b7c26bbac177153181689096a97b7e1190281748e82cbd89273fda2405bec0",
+    "11_static_carbon.pt": "9dd4837b6f229aa030757556d95d45f1fefc85c0596f80d6ecd95880e2f70c99",
+    "11_unconditioned.pt": "1ab6c1c7bd24494e04ab5ce1d095219c3576fa886473057da18f43ac2296a49e",
+    "22_adaptive.pt": "a22ea20d770e42a5865fe17c1803744057d5a501caa50e4cff59e58710ca74ea",
+    "22_fixed.pt": "5759470fe116f38fb31d99d6791a66f191e703410a40a7dd3ff36479f1a4b5a8",
+    "22_raw_reward.pt": "ff2dca2dbaa380db6b3676e07c557d79841384d86c51c263e989fd758066914a",
+    "22_static_carbon.pt": "a4f1385f18c9eb8cac8391be7b365f105a5a26ceb8356c05461177836b0d5e76",
+    "22_unconditioned.pt": "8a4e053c8aca8609d2aa4fd68bfd7605d1595df86b6ac2cd94b67c5a51b08aa5",
+    "33_adaptive.pt": "c8dda7330cd4cdb9a67b753ffde9eea528dc87505045c9635a7cce22f2e4d957",
+    "33_fixed.pt": "94ec3fe8858d01b63d6eac35d7280b802e2dccd5cec8c62db1c19c37a7ae13d0",
+    "33_raw_reward.pt": "07a1d1044d2febff9bbacc23718e6faa48533820feb014434b7308d8c6973739",
+    "33_static_carbon.pt": "d58f7a61c4a8dcc5b0049c6e2567790f62af227f7dfd9caa36c62b9715573e21",
+    "33_unconditioned.pt": "b786727a4cfe66c80809873942c918788b6e69b72ed8666d9ce4aff7c3eeb737",
+    "analysis.json": "e925d4aeff8bcbc17cd63bbf9684735289e46ff6bedcc1ba045e92776d9d5919",
+    "results.json": "48c36aba8f6a42be31f4b6038247a7e6d5f02ae61df56194d7d0b721f34c2bff",
+    "trajectories.json": "07a904e904150077f678f2f146a0ecedc5b2ba9edac818f04af5f9151b1ed345"
+  }
+}

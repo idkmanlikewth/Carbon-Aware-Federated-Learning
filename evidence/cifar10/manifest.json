@@ -1,0 +1,264 @@
+{
+  "schema_version": 1,
+  "status": "complete",
+  "started_utc": "2026-11-17T15:35:44.198402+00:00",
+  "config": {
+    "dataset": "cifar10",
+    "clients": 10,
+    "rounds": 5,
+    "episodes": 8,
+    "train_samples": 1000,
+    "eval_samples": 200,
+    "local_epochs": 1,
+    "batch_size": 64,
+    "learning_rate": 0.05,
+    "alpha": 0.5,
+    "participation": 0.2,
+    "seeds": [
+      11,
+      22,
+      33
+    ],
+    "preferences": [
+      [
+        0.7,
+        0.1,
+        0.1,
+        0.1
+      ],
+      [
+        0.25,
+        0.25,
+        0.25,
+        0.25
+      ],
+      [
+        0.1,
+        0.1,
+        0.7,
+        0.1
+      ]
+    ],
+    "policies": [
+      "adaptive",
+      "fixed",
+      "unconditioned",
+      "static_carbon",
+      "raw_reward",
+      "random",
+      "carbon",
+      "fair"
+    ],
+    "download": false,
+    "data_dir": "data",
+    "latency_scale_s": 120.0,
+    "carbon_scale_g": 5.0,
+    "accuracy_gain_scale": 0.1,
+    "gamma": 0.95,
+    "replay_capacity": 10000,
+    "replay_batch": 32,
+    "target_interval": 25
+  },
+  "measurement_type": "SIMULATED_INFRASTRUCTURE; actual classifier evaluation",
+  "carbon_model": "Scenario W, seconds and gCO2e/kWh; includes idle clients and 30W coordinator at 400g/kWh. Not measured hardware energy or wall-clock latency.",
+  "python": "3.11.9",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "versions": {
+    "torch": "2.5.1+cpu",
+    "torchvision": "0.20.1+cpu",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1"
+  },
+  "git_commit": "76df59abd7911bbdf683b84795ec955287c68aa0",
+  "git_dirty": true,
+  "datasets": {
+    "11": {
+      "source": "torchvision.datasets.CIFAR10:official-train-and-test",
+      "subset_sha256": "8b8fa92554c75ef7bedaabd2201078ba05db5b13fee8a291dbcb9787abff82d5",
+      "train_samples": 1000,
+      "validation_samples": 100,
+      "test_samples": 100,
+      "partition_sizes": [
+        110,
+        145,
+        145,
+        86,
+        106,
+        87,
+        59,
+        20,
+        70,
+        172
+      ]
+    },
+    "22": {
+      "source": "torchvision.datasets.CIFAR10:official-train-and-test",
+      "subset_sha256": "e896416e936624baf70740a8e6b54989157910062d9af9d36e6c99e85b4279b3",
+      "train_samples": 1000,
+      "validation_samples": 100,
+      "test_samples": 100,
+      "partition_sizes": [
+        105,
+        151,
+        55,
+        99,
+        71,
+        47,
+        56,
+        70,
+        174,
+        172
+      ]
+    },
+    "33": {
+      "source": "torchvision.datasets.CIFAR10:official-train-and-test",
+      "subset_sha256": "ffdb8d7c58e342049d4a982308e5bb0e0d2cebe3f42e3c5e3a41a05159224542",
+      "train_samples": 1000,
+      "validation_samples": 100,
+      "test_samples": 100,
+      "partition_sizes": [
+        124,
+        59,
+        90,
+        41,
+        88,
+        79,
+        121,
+        105,
+        162,
+        131
+      ]
+    }
+  },
+  "training": [
+    {
+      "seed": 11,
+      "policy": "adaptive",
+      "updates": 9,
+      "loss_last": 0.01873823255300522,
+      "checkpoint": "11_adaptive.pt"
+    },
+    {
+      "seed": 11,
+      "policy": "fixed",
+      "updates": 9,
+      "loss_last": 0.02671372890472412,
+      "checkpoint": "11_fixed.pt"
+    },
+    {
+      "seed": 11,
+      "policy": "unconditioned",
+      "updates": 9,
+      "loss_last": 0.018422123044729233,
+      "checkpoint": "11_unconditioned.pt"
+    },
+    {
+      "seed": 11,
+      "policy": "static_carbon",
+      "updates": 9,
+      "loss_last": 0.020060526207089424,
+      "checkpoint": "11_static_carbon.pt"
+    },
+    {
+      "seed": 11,
+      "policy": "raw_reward",
+      "updates": 9,
+      "loss_last": 0.34968966245651245,
+      "checkpoint": "11_raw_reward.pt"
+    },
+    {
+      "seed": 22,
+      "policy": "adaptive",
+      "updates": 9,
+      "loss_last": 0.013841278851032257,
+      "checkpoint": "22_adaptive.pt"
+    },
+    {
+      "seed": 22,
+      "policy": "fixed",
+      "updates": 9,
+      "loss_last": 0.009942090138792992,
+      "checkpoint": "22_fixed.pt"
+    },
+    {
+      "seed": 22,
+      "policy": "unconditioned",
+      "updates": 9,
+      "loss_last": 0.015456253662705421,
+      "checkpoint": "22_unconditioned.pt"
+    },
+    {
+      "seed": 22,
+      "policy": "static_carbon",
+      "updates": 9,
+      "loss_last": 0.009726977907121181,
+      "checkpoint": "22_static_carbon.pt"
+    },
+    {
+      "seed": 22,
+      "policy": "raw_reward",
+      "updates": 9,
+      "loss_last": 0.3705418109893799,
+      "checkpoint": "22_raw_reward.pt"
+    },
+    {
+      "seed": 33,
+      "policy": "adaptive",
+      "updates": 9,
+      "loss_last": 0.00786004401743412,
+      "checkpoint": "33_adaptive.pt"
+    },
+    {
+      "seed": 33,
+      "policy": "fixed",
+      "updates": 9,
+      "loss_last": 0.011434812098741531,
+      "checkpoint": "33_fixed.pt"
+    },
+    {
+      "seed": 33,
+      "policy": "unconditioned",
+      "updates": 9,
+      "loss_last": 0.008438020944595337,
+      "checkpoint": "33_unconditioned.pt"
+    },
+    {
+      "seed": 33,
+      "policy": "static_carbon",
+      "updates": 9,
+      "loss_last": 0.007038555108010769,
+      "checkpoint": "33_static_carbon.pt"
+    },
+    {
+      "seed": 33,
+      "policy": "raw_reward",
+      "updates": 9,
+      "loss_last": 1.1880077123641968,
+      "checkpoint": "33_raw_reward.pt"
+    }
+  ],
+  "engine_sha256": "afa73b5080464456f1c98420c1a7aea1343eecd81ee4eb1e68db8567f2c3370d",
+  "wall_seconds": 30.072241800000484,
+  "completed_utc": "2026-11-17T15:36:14.270396+00:00",
+  "artifact_sha256": {
+    "11_adaptive.pt": "60e60507f67c5c5c27b5284e3e5f61a72d9b571f87058328b7ad04fb661936ad",
+    "11_fixed.pt": "679c436da7cbc5efced020af48c680f86397d82904dfe100650b7f51045e4516",
+    "11_raw_reward.pt": "363c72942a2d9db60b5f6fb71ea7a97eccb4610accc4fd51cd968f0628a0f5ba",
+    "11_static_carbon.pt": "ecda743b53ed43b1f759d7d6c91ea47546fbd48b7829ec3ab5d6cfa2d510350d",
+    "11_unconditioned.pt": "64d2d1d3989aad91e2c48f2c5a964a8080fdec76024c6fe3efefb0aa18b67ca4",
+    "22_adaptive.pt": "81525e13cde5699874713796b24440eaf1a5f59bb924d575e41042ff0744fe33",
+    "22_fixed.pt": "c2092df43995cb5b51062da7c303e47dd75af92d61ef31536c2b95ad5cd391c3",
+    "22_raw_reward.pt": "ec7a51358fed33e079d86a4947b972f612cf9d3286d957ee5da1673eb36c1917",
+    "22_static_carbon.pt": "4b62a654de6e15b2ce3e25ad8eaf61bdfd5b187974513ce57d1389227e5796f1",
+    "22_unconditioned.pt": "56525f856433f1375dbbd0c870884ee8fe854edf3988161ae744f7534a794a8a",
+    "33_adaptive.pt": "a0c34e7702f45993de8116568ffcb82d75146798ab9ae0d707954092e2392ccf",
+    "33_fixed.pt": "89adece505eb9d10f65db14da7b78fae5f777e5b25e58eea6d2e4b7a8e265534",
+    "33_raw_reward.pt": "7d18d7e1ce03e3f9f1ad9a785d3269143fd7e1bf4088f4b2b6f881fa6428f465",
+    "33_static_carbon.pt": "3772d2373b725933c9788eeb7de1a2de956394f4b1a6e28f791e0d0dc226e1ed",
+    "33_unconditioned.pt": "72ff9b6430d55223ce07a85ea462ec5aa4d06ec0fb464700ce48ef385427c5e6",
+    "analysis.json": "eeacbdad72aa170f1436de817f378a4bd7b3d23cfeea58ca7497acc22daedd74",
+    "results.json": "8704551092231a3c054a2f0c4dd73c744b364447979d00097cbcf01a94cc2a34",
+    "source_snapshot.zip": "a9de621978a7ca3d96fd2f7a65e5aab68d1d993932ecb8968295749ade6299b2",
+    "trajectories.json": "a57acb1c1aa46caf8b7eff47ad1cde58c9a5fede735467ffbfbaa088080ed546"
+  }
+}

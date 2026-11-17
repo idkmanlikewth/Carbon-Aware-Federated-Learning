@@ -1,0 +1,707 @@
+{
+  "objectives": [
+    "test_accuracy:max",
+    "latency/(rounds*latency_scale):min",
+    "carbon/(rounds*carbon_scale):min"
+  ],
+  "reference": [
+    0,
+    -1,
+    -1
+  ],
+  "pareto": [
+    {
+      "seed": 11,
+      "policy": "adaptive",
+      "preference_index": 1
+    },
+    {
+      "seed": 11,
+      "policy": "adaptive",
+      "preference_index": 2
+    },
+    {
+      "seed": 11,
+      "policy": "fixed",
+      "preference_index": 2
+    },
+    {
+      "seed": 11,
+      "policy": "unconditioned",
+      "preference_index": 0
+    },
+    {
+      "seed": 11,
+      "policy": "unconditioned",
+      "preference_index": 1
+    },
+    {
+      "seed": 11,
+      "policy": "unconditioned",
+      "preference_index": 2
+    },
+    {
+      "seed": 11,
+      "policy": "static_carbon",
+      "preference_index": 0
+    },
+    {
+      "seed": 11,
+      "policy": "static_carbon",
+      "preference_index": 1
+    },
+    {
+      "seed": 11,
+      "policy": "static_carbon",
+      "preference_index": 2
+    },
+    {
+      "seed": 11,
+      "policy": "raw_reward",
+      "preference_index": 0
+    },
+    {
+      "seed": 11,
+      "policy": "raw_reward",
+      "preference_index": 1
+    },
+    {
+      "seed": 11,
+      "policy": "raw_reward",
+      "preference_index": 2
+    },
+    {
+      "seed": 11,
+      "policy": "random",
+      "preference_index": 0
+    },
+    {
+      "seed": 11,
+      "policy": "random",
+      "preference_index": 1
+    },
+    {
+      "seed": 11,
+      "policy": "random",
+      "preference_index": 2
+    },
+    {
+      "seed": 11,
+      "policy": "carbon",
+      "preference_index": 0
+    },
+    {
+      "seed": 11,
+      "policy": "carbon",
+      "preference_index": 1
+    },
+    {
+      "seed": 11,
+      "policy": "carbon",
+      "preference_index": 2
+    },
+    {
+      "seed": 11,
+      "policy": "fair",
+      "preference_index": 0
+    },
+    {
+      "seed": 11,
+      "policy": "fair",
+      "preference_index": 1
+    },
+    {
+      "seed": 11,
+      "policy": "fair",
+      "preference_index": 2
+    },
+    {
+      "seed": 22,
+      "policy": "adaptive",
+      "preference_index": 0
+    },
+    {
+      "seed": 22,
+      "policy": "adaptive",
+      "preference_index": 1
+    },
+    {
+      "seed": 22,
+      "policy": "adaptive",
+      "preference_index": 2
+    },
+    {
+      "seed": 22,
+      "policy": "fixed",
+      "preference_index": 0
+    },
+    {
+      "seed": 22,
+      "policy": "fixed",
+      "preference_index": 1
+    },
+    {
+      "seed": 22,
+      "policy": "fixed",
+      "preference_index": 2
+    },
+    {
+      "seed": 22,
+      "policy": "unconditioned",
+      "preference_index": 0
+    },
+    {
+      "seed": 22,
+      "policy": "unconditioned",
+      "preference_index": 1
+    },
+    {
+      "seed": 22,
+      "policy": "unconditioned",
+      "preference_index": 2
+    },
+    {
+      "seed": 22,
+      "policy": "static_carbon",
+      "preference_index": 0
+    },
+    {
+      "seed": 22,
+      "policy": "static_carbon",
+      "preference_index": 1
+    },
+    {
+      "seed": 22,
+      "policy": "static_carbon",
+      "preference_index": 2
+    },
+    {
+      "seed": 22,
+      "policy": "raw_reward",
+      "preference_index": 0
+    },
+    {
+      "seed": 22,
+      "policy": "raw_reward",
+      "preference_index": 1
+    },
+    {
+      "seed": 22,
+      "policy": "raw_reward",
+      "preference_index": 2
+    },
+    {
+      "seed": 22,
+      "policy": "random",
+      "preference_index": 0
+    },
+    {
+      "seed": 22,
+      "policy": "random",
+      "preference_index": 1
+    },
+    {
+      "seed": 22,
+      "policy": "random",
+      "preference_index": 2
+    },
+    {
+      "seed": 22,
+      "policy": "carbon",
+      "preference_index": 0
+    },
+    {
+      "seed": 22,
+      "policy": "carbon",
+      "preference_index": 1
+    },
+    {
+      "seed": 22,
+      "policy": "carbon",
+      "preference_index": 2
+    },
+    {
+      "seed": 22,
+      "policy": "fair",
+      "preference_index": 0
+    },
+    {
+      "seed": 22,
+      "policy": "fair",
+      "preference_index": 1
+    },
+    {
+      "seed": 22,
+      "policy": "fair",
+      "preference_index": 2
+    },
+    {
+      "seed": 33,
+      "policy": "adaptive",
+      "preference_index": 0
+    },
+    {
+      "seed": 33,
+      "policy": "adaptive",
+      "preference_index": 1
+    },
+    {
+      "seed": 33,
+      "policy": "adaptive",
+      "preference_index": 2
+    },
+    {
+      "seed": 33,
+      "policy": "fixed",
+      "preference_index": 0
+    },
+    {
+      "seed": 33,
+      "policy": "fixed",
+      "preference_index": 1
+    },
+    {
+      "seed": 33,
+      "policy": "fixed",
+      "preference_index": 2
+    },
+    {
+      "seed": 33,
+      "policy": "unconditioned",
+      "preference_index": 0
+    },
+    {
+      "seed": 33,
+      "policy": "unconditioned",
+      "preference_index": 1
+    },
+    {
+      "seed": 33,
+      "policy": "unconditioned",
+      "preference_index": 2
+    },
+    {
+      "seed": 33,
+      "policy": "static_carbon",
+      "preference_index": 0
+    },
+    {
+      "seed": 33,
+      "policy": "static_carbon",
+      "preference_index": 1
+    },
+    {
+      "seed": 33,
+      "policy": "static_carbon",
+      "preference_index": 2
+    },
+    {
+      "seed": 33,
+      "policy": "raw_reward",
+      "preference_index": 0
+    },
+    {
+      "seed": 33,
+      "policy": "raw_reward",
+      "preference_index": 1
+    },
+    {
+      "seed": 33,
+      "policy": "raw_reward",
+      "preference_index": 2
+    },
+    {
+      "seed": 33,
+      "policy": "random",
+      "preference_index": 0
+    },
+    {
+      "seed": 33,
+      "policy": "random",
+      "preference_index": 1
+    },
+    {
+      "seed": 33,
+      "policy": "random",
+      "preference_index": 2
+    },
+    {
+      "seed": 33,
+      "policy": "carbon",
+      "preference_index": 0
+    },
+    {
+      "seed": 33,
+      "policy": "carbon",
+      "preference_index": 1
+    },
+    {
+      "seed": 33,
+      "policy": "carbon",
+      "preference_index": 2
+    },
+    {
+      "seed": 33,
+      "policy": "fair",
+      "preference_index": 0
+    },
+    {
+      "seed": 33,
+      "policy": "fair",
+      "preference_index": 1
+    },
+    {
+      "seed": 33,
+      "policy": "fair",
+      "preference_index": 2
+    }
+  ],
+  "hypervolume": [
+    {
+      "seed": 11,
+      "policy": "adaptive",
+      "hypervolume": 0.15384970585242036,
+      "outside_reference": 0
+    },
+    {
+      "seed": 11,
+      "policy": "fixed",
+      "hypervolume": 0.11322896667184967,
+      "outside_reference": 0
+    },
+    {
+      "seed": 11,
+      "policy": "unconditioned",
+      "hypervolume": 0.10901078017173946,
+      "outside_reference": 0
+    },
+    {
+      "seed": 11,
+      "policy": "static_carbon",
+      "hypervolume": 0.11421485172926196,
+      "outside_reference": 0
+    },
+    {
+      "seed": 11,
+      "policy": "raw_reward",
+      "hypervolume": 0.12614725153849338,
+      "outside_reference": 0
+    },
+    {
+      "seed": 11,
+      "policy": "random",
+      "hypervolume": 0.10816669369235277,
+      "outside_reference": 0
+    },
+    {
+      "seed": 11,
+      "policy": "carbon",
+      "hypervolume": 0.11523200459044974,
+      "outside_reference": 0
+    },
+    {
+      "seed": 11,
+      "policy": "fair",
+      "hypervolume": 0.10902992396415279,
+      "outside_reference": 0
+    },
+    {
+      "seed": 22,
+      "policy": "adaptive",
+      "hypervolume": 0.1050931092722702,
+      "outside_reference": 0
+    },
+    {
+      "seed": 22,
+      "policy": "fixed",
+      "hypervolume": 0.1050931092722702,
+      "outside_reference": 0
+    },
+    {
+      "seed": 22,
+      "policy": "unconditioned",
+      "hypervolume": 0.1050931092722702,
+      "outside_reference": 0
+    },
+    {
+      "seed": 22,
+      "policy": "static_carbon",
+      "hypervolume": 0.1050931092722702,
+      "outside_reference": 0
+    },
+    {
+      "seed": 22,
+      "policy": "raw_reward",
+      "hypervolume": 0.1050931092722702,
+      "outside_reference": 0
+    },
+    {
+      "seed": 22,
+      "policy": "random",
+      "hypervolume": 0.02806653753408288,
+      "outside_reference": 0
+    },
+    {
+      "seed": 22,
+      "policy": "carbon",
+      "hypervolume": 0.1050931092722702,
+      "outside_reference": 0
+    },
+    {
+      "seed": 22,
+      "policy": "fair",
+      "hypervolume": 0.09443853929377662,
+      "outside_reference": 0
+    },
+    {
+      "seed": 33,
+      "policy": "adaptive",
+      "hypervolume": 0.11111088938041229,
+      "outside_reference": 0
+    },
+    {
+      "seed": 33,
+      "policy": "fixed",
+      "hypervolume": 0.11111088938041229,
+      "outside_reference": 0
+    },
+    {
+      "seed": 33,
+      "policy": "unconditioned",
+      "hypervolume": 0.11092104219806782,
+      "outside_reference": 0
+    },
+    {
+      "seed": 33,
+      "policy": "static_carbon",
+      "hypervolume": 0.11092104219806782,
+      "outside_reference": 0
+    },
+    {
+      "seed": 33,
+      "policy": "raw_reward",
+      "hypervolume": 0.11092104219806782,
+      "outside_reference": 0
+    },
+    {
+      "seed": 33,
+      "policy": "random",
+      "hypervolume": 0.11092104219806782,
+      "outside_reference": 0
+    },
+    {
+      "seed": 33,
+      "policy": "carbon",
+      "hypervolume": 0.09470194805894147,
+      "outside_reference": 0
+    },
+    {
+      "seed": 33,
+      "policy": "fair",
+      "hypervolume": 0.09406358544221045,
+      "outside_reference": 0
+    }
+  ],
+  "summary": {
+    "adaptive": {
+      "n": 3,
+      "mean": 0.12335123483503428,
+      "ci95": [
+        0.05731469739268795,
+        0.18938777227738063
+      ]
+    },
+    "fixed": {
+      "n": 3,
+      "mean": 0.10981098844151072,
+      "ci95": [
+        0.0993258816909612,
+        0.12029609519206023
+      ]
+    },
+    "unconditioned": {
+      "n": 3,
+      "mean": 0.10834164388069249,
+      "ci95": [
+        0.10096120088970115,
+        0.11572208687168384
+      ]
+    },
+    "static_carbon": {
+      "n": 3,
+      "mean": 0.11007633439986665,
+      "ci95": [
+        0.09860168986831848,
+        0.12155097893141482
+      ]
+    },
+    "raw_reward": {
+      "n": 3,
+      "mean": 0.11405380100294381,
+      "ci95": [
+        0.08704860066871122,
+        0.14105900133717642
+      ]
+    },
+    "random": {
+      "n": 3,
+      "mean": 0.08238475780816783,
+      "ci95": [
+        -0.03452152887196937,
+        0.19929104448830504
+      ]
+    },
+    "carbon": {
+      "n": 3,
+      "mean": 0.1050090206405538,
+      "ci95": [
+        0.07950863513726729,
+        0.13050940614384032
+      ]
+    },
+    "fair": {
+      "n": 3,
+      "mean": 0.09917734956671327,
+      "ci95": [
+        0.07797613076249872,
+        0.12037856837092782
+      ]
+    }
+  },
+  "paired_tests": [
+    {
+      "baseline": "carbon",
+      "seeds": [
+        11,
+        22,
+        33
+      ],
+      "difference": {
+        "n": 3,
+        "mean": 0.01834221419448048,
+        "ci95": [
+          -0.02980360922928087,
+          0.06648803761824183
+        ]
+      },
+      "p_raw": 0.24284554743007228,
+      "p_holm": 1.0,
+      "effect_dz": 0.9463870956462597
+    },
+    {
+      "baseline": "fair",
+      "seeds": [
+        11,
+        22,
+        33
+      ],
+      "difference": {
+        "n": 3,
+        "mean": 0.024173885268320996,
+        "ci95": [
+          -0.020946327113672267,
+          0.06929409765031426
+        ]
+      },
+      "p_raw": 0.14761945797339915,
+      "p_holm": 1.0,
+      "effect_dz": 1.3309170516787596
+    },
+    {
+      "baseline": "fixed",
+      "seeds": [
+        11,
+        22,
+        33
+      ],
+      "difference": {
+        "n": 3,
+        "mean": 0.013540246393523562,
+        "ci95": [
+          -0.04471873171305091,
+          0.07179922450009803
+        ]
+      },
+      "p_raw": 0.42264973081037416,
+      "p_holm": 1.0,
+      "effect_dz": 0.5773502691896257
+    },
+    {
+      "baseline": "random",
+      "seeds": [
+        11,
+        22,
+        33
+      ],
+      "difference": {
+        "n": 3,
+        "mean": 0.04096647702686646,
+        "ci95": [
+          -0.05500791382989902,
+          0.13694086788363194
+        ]
+      },
+      "p_raw": 0.2076806483771196,
+      "p_holm": 1.0,
+      "effect_dz": 1.0603492201567721
+    },
+    {
+      "baseline": "raw_reward",
+      "seeds": [
+        11,
+        22,
+        33
+      ],
+      "difference": {
+        "n": 3,
+        "mean": 0.009297433832090482,
+        "ci95": [
+          -0.030298474115719724,
+          0.048893341779900686
+        ]
+      },
+      "p_raw": 0.4187067522331377,
+      "p_holm": 1.0,
+      "effect_dz": 0.5832952747349907
+    },
+    {
+      "baseline": "static_carbon",
+      "seeds": [
+        11,
+        22,
+        33
+      ],
+      "difference": {
+        "n": 3,
+        "mean": 0.013274900435167622,
+        "ci95": [
+          -0.04343445315982415,
+          0.0699842540301594
+        ]
+      },
+      "p_raw": 0.4198909326594169,
+      "p_holm": 1.0,
+      "effect_dz": 0.5815033799581707
+    },
+    {
+      "baseline": "unconditioned",
+      "seeds": [
+        11,
+        22,
+        33
+      ],
+      "difference": {
+        "n": 3,
+        "mean": 0.01500959095434179,
+        "ci95": [
+          -0.04916347651891012,
+          0.0791826584275937
+        ]
+      },
+      "p_raw": 0.4202104372490838,
+      "p_holm": 1.0,
+      "effect_dz": 0.5810208611761977
+    }
+  ],
+  "inference": "Exploratory paired seed-level t tests, 95% Student-t intervals, Holm correction; small seed counts are low power. Preferences are not independent replicates."
+}

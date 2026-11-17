@@ -1,0 +1,263 @@
+{
+  "schema_version": 1,
+  "status": "complete",
+  "started_utc": "2026-11-17T15:19:06.848864+00:00",
+  "config": {
+    "dataset": "mnist",
+    "clients": 10,
+    "rounds": 5,
+    "episodes": 8,
+    "train_samples": 1000,
+    "eval_samples": 200,
+    "local_epochs": 1,
+    "batch_size": 64,
+    "learning_rate": 0.05,
+    "alpha": 0.5,
+    "participation": 0.2,
+    "seeds": [
+      11,
+      22,
+      33
+    ],
+    "preferences": [
+      [
+        0.7,
+        0.1,
+        0.1,
+        0.1
+      ],
+      [
+        0.25,
+        0.25,
+        0.25,
+        0.25
+      ],
+      [
+        0.1,
+        0.1,
+        0.7,
+        0.1
+      ]
+    ],
+    "policies": [
+      "adaptive",
+      "fixed",
+      "unconditioned",
+      "static_carbon",
+      "raw_reward",
+      "random",
+      "carbon",
+      "fair"
+    ],
+    "download": true,
+    "data_dir": "data",
+    "latency_scale_s": 120.0,
+    "carbon_scale_g": 5.0,
+    "accuracy_gain_scale": 0.1,
+    "gamma": 0.95,
+    "replay_capacity": 10000,
+    "replay_batch": 32,
+    "target_interval": 25
+  },
+  "measurement_type": "SIMULATED_INFRASTRUCTURE; actual classifier evaluation",
+  "carbon_model": "Scenario W, seconds and gCO2e/kWh; includes idle clients and 30W coordinator at 400g/kWh. Not measured hardware energy or wall-clock latency.",
+  "python": "3.11.9",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "versions": {
+    "torch": "2.5.1+cpu",
+    "torchvision": "0.20.1+cpu",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1"
+  },
+  "git_commit": "14db423e952ee90ab881c518027a2733150705ff",
+  "git_dirty": true,
+  "datasets": {
+    "11": {
+      "source": "torchvision.datasets.MNIST:official-train-and-test",
+      "subset_sha256": "c701dfdc3838e2fceb5fc3681affe0b9f904cc5b4faafb7f9af0df331295d1e6",
+      "train_samples": 1000,
+      "validation_samples": 100,
+      "test_samples": 100,
+      "partition_sizes": [
+        161,
+        104,
+        102,
+        78,
+        68,
+        27,
+        71,
+        149,
+        110,
+        130
+      ]
+    },
+    "22": {
+      "source": "torchvision.datasets.MNIST:official-train-and-test",
+      "subset_sha256": "e6fca0807d262e826a18e5312081b320b3af556c06e8a00ab555fe00a5ea2ba4",
+      "train_samples": 1000,
+      "validation_samples": 100,
+      "test_samples": 100,
+      "partition_sizes": [
+        64,
+        72,
+        79,
+        118,
+        123,
+        136,
+        94,
+        170,
+        52,
+        92
+      ]
+    },
+    "33": {
+      "source": "torchvision.datasets.MNIST:official-train-and-test",
+      "subset_sha256": "4f6a57c46d4e51db731769a6ae30930b8e88e6881534ca679b90258e28e32562",
+      "train_samples": 1000,
+      "validation_samples": 100,
+      "test_samples": 100,
+      "partition_sizes": [
+        83,
+        111,
+        87,
+        176,
+        144,
+        130,
+        54,
+        90,
+        40,
+        85
+      ]
+    }
+  },
+  "training": [
+    {
+      "seed": 11,
+      "policy": "adaptive",
+      "updates": 9,
+      "loss_last": 0.019032280892133713,
+      "checkpoint": "11_adaptive.pt"
+    },
+    {
+      "seed": 11,
+      "policy": "fixed",
+      "updates": 9,
+      "loss_last": 0.01930026337504387,
+      "checkpoint": "11_fixed.pt"
+    },
+    {
+      "seed": 11,
+      "policy": "unconditioned",
+      "updates": 9,
+      "loss_last": 0.023948701098561287,
+      "checkpoint": "11_unconditioned.pt"
+    },
+    {
+      "seed": 11,
+      "policy": "static_carbon",
+      "updates": 9,
+      "loss_last": 0.020490434020757675,
+      "checkpoint": "11_static_carbon.pt"
+    },
+    {
+      "seed": 11,
+      "policy": "raw_reward",
+      "updates": 9,
+      "loss_last": 0.4281003773212433,
+      "checkpoint": "11_raw_reward.pt"
+    },
+    {
+      "seed": 22,
+      "policy": "adaptive",
+      "updates": 9,
+      "loss_last": 0.01118090096861124,
+      "checkpoint": "22_adaptive.pt"
+    },
+    {
+      "seed": 22,
+      "policy": "fixed",
+      "updates": 9,
+      "loss_last": 0.009096265770494938,
+      "checkpoint": "22_fixed.pt"
+    },
+    {
+      "seed": 22,
+      "policy": "unconditioned",
+      "updates": 9,
+      "loss_last": 0.010865465737879276,
+      "checkpoint": "22_unconditioned.pt"
+    },
+    {
+      "seed": 22,
+      "policy": "static_carbon",
+      "updates": 9,
+      "loss_last": 0.013308592140674591,
+      "checkpoint": "22_static_carbon.pt"
+    },
+    {
+      "seed": 22,
+      "policy": "raw_reward",
+      "updates": 9,
+      "loss_last": 0.3025136888027191,
+      "checkpoint": "22_raw_reward.pt"
+    },
+    {
+      "seed": 33,
+      "policy": "adaptive",
+      "updates": 9,
+      "loss_last": 0.013279220089316368,
+      "checkpoint": "33_adaptive.pt"
+    },
+    {
+      "seed": 33,
+      "policy": "fixed",
+      "updates": 9,
+      "loss_last": 0.012816433794796467,
+      "checkpoint": "33_fixed.pt"
+    },
+    {
+      "seed": 33,
+      "policy": "unconditioned",
+      "updates": 9,
+      "loss_last": 0.01715100184082985,
+      "checkpoint": "33_unconditioned.pt"
+    },
+    {
+      "seed": 33,
+      "policy": "static_carbon",
+      "updates": 9,
+      "loss_last": 0.015321404673159122,
+      "checkpoint": "33_static_carbon.pt"
+    },
+    {
+      "seed": 33,
+      "policy": "raw_reward",
+      "updates": 9,
+      "loss_last": 1.0514291524887085,
+      "checkpoint": "33_raw_reward.pt"
+    }
+  ],
+  "engine_sha256": "6cdbad31418f5d122c074d0103258ea8b07f888ce46f3d3d72097d11af755dd1",
+  "wall_seconds": 41.13725669999985,
+  "completed_utc": "2026-11-17T15:19:47.986933+00:00",
+  "artifact_sha256": {
+    "11_adaptive.pt": "841122ed26ce69832e41638246da4e7b30e5822442c128816b778418b4b63e9e",
+    "11_fixed.pt": "2348215da4b4a90116a7279af583aade977e5bcc477782e36470359afe9cdc06",
+    "11_raw_reward.pt": "ff3a48e2f535f980cf82792b5a5065e355a19cc126d1c3df33c846a21f3bec6a",
+    "11_static_carbon.pt": "e46aaaff785966a80a6fabae0054cae3242b5e20000e8f9b4d54d46a967a9aaf",
+    "11_unconditioned.pt": "efccb133ede3b32bc1c4803962bfeaf5f9cf9085f3411918b2e2e051f3dfa538",
+    "22_adaptive.pt": "8b027b50fa1f30c28f8b20df2199cb5b9bb943817f63e6a9f5d4f29f6e725106",
+    "22_fixed.pt": "82f5927754a4945bf0ac3b53f8311fffc58742e1039e94d1bb1fa026aa209b85",
+    "22_raw_reward.pt": "48cbbc90107231c7184cd8f445c069b5d2d5831d943d35d7ada23a8872f5373d",
+    "22_static_carbon.pt": "b90edfb277ee6778dca8677fffe3b031cecfe3a5bb7b0a9a3d94de6b47ac6fbb",
+    "22_unconditioned.pt": "f43c6285acb24460ee950b5f4b58faa606b4887f185f9f66a1b9dbd9824b59a1",
+    "33_adaptive.pt": "27305426dfdb49ac9705c101a0d027e1f52c72c6e082c510bd1fc1358dac52ed",
+    "33_fixed.pt": "047890664a7377b803a7e26a11b3711180fe3f0b3d21d47ff9033b3e6db575f4",
+    "33_raw_reward.pt": "7e81934e11af3c9e2e5fa13cb951395b1bf89a38baa1b61eee61ada502588903",
+    "33_static_carbon.pt": "2c0d98282cdf1b1f68cb75d86e9f245aa42d4ce0a9b2c5bb4cf4ac75848e5d41",
+    "33_unconditioned.pt": "89cf9f92e1f2b07234eb5fd2d125246f151d112902a8485d7b37314b38e346c9",
+    "analysis.json": "0382b0d3ca12b6c45af3e2b12dd2d974e61c50893eca39da6daa04e61adf33c5",
+    "results.json": "c977b68cd81e4691bcf1cf1da1ea24ba205647b287ba4538bc31662a12baca88",
+    "trajectories.json": "33bc14765c4508a8fbb6c916d1093281d7e2c5cd02e0dcb332b29a88a94e96f1"
+  }
+}

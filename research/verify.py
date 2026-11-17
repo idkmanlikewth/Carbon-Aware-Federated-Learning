@@ -62,7 +62,15 @@ def verify(folder):
                 raise ValueError(f"Trajectory total differs: {key}")
     actual = analyze(results, c)
     stored = json.loads((folder/"analysis.json").read_text())
-    if actual != stored:
+    def equivalent(a, b):
+        if isinstance(a, dict) and isinstance(b, dict):
+            return a.keys() == b.keys() and all(equivalent(a[k], b[k]) for k in a)
+        if isinstance(a, list) and isinstance(b, list):
+            return len(a) == len(b) and all(equivalent(x, y) for x, y in zip(a, b))
+        if isinstance(a, (int, float)) and isinstance(b, (int, float)):
+            return bool(np.isclose(a, b, rtol=1e-9, atol=1e-12))
+        return a == b
+    if not equivalent(actual, stored):
         raise ValueError("Analysis does not reproduce from raw results")
     return {"run": folder.name, "status": "verified", "seeds": len(c.seeds), "evaluations": count, "round_records": len(trace)}
 

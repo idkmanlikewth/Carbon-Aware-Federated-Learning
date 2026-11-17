@@ -1,0 +1,46 @@
+{
+  "objectives": [
+    "test_accuracy:max",
+    "latency/(rounds*latency_scale):min",
+    "carbon/(rounds*carbon_scale):min"
+  ],
+  "reference": [
+    0,
+    -1,
+    -1
+  ],
+  "pareto": [
+    {
+      "seed": 44,
+      "policy": "random",
+      "preference_index": 0
+    },
+    {
+      "seed": 44,
+      "policy": "random",
+      "preference_index": 1
+    },
+    {
+      "seed": 44,
+      "policy": "random",
+      "preference_index": 2
+    }
+  ],
+  "hypervolume": [
+    {
+      "seed": 44,
+      "policy": "random",
+      "hypervolume": 0.11588770131213248,
+      "outside_reference": 0
+    }
+  ],
+  "summary": {
+    "random": {
+      "n": 1,
+      "mean": 0.11588770131213248,
+      "ci95": null
+    }
+  },
+  "paired_tests": [],
+  "inference": "Exploratory paired seed-level t tests, 95% Student-t intervals, Holm correction; small seed counts are low power. Preferences are not independent replicates."
+}

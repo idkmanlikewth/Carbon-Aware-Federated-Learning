@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "status": "complete",
+  "started_utc": "2026-11-17T15:32:08.269380+00:00",
+  "config": {
+    "dataset": "mnist",
+    "clients": 10,
+    "rounds": 30,
+    "episodes": 1,
+    "train_samples": 2000,
+    "eval_samples": 600,
+    "local_epochs": 2,
+    "batch_size": 64,
+    "learning_rate": 0.05,
+    "alpha": 0.5,
+    "participation": 1.0,
+    "seeds": [
+      44
+    ],
+    "preferences": [
+      [
+        0.7,
+        0.1,
+        0.1,
+        0.1
+      ],
+      [
+        0.25,
+        0.25,
+        0.25,
+        0.25
+      ],
+      [
+        0.1,
+        0.1,
+        0.7,
+        0.1
+      ]
+    ],
+    "policies": [
+      "random"
+    ],
+    "download": false,
+    "data_dir": "data",
+    "latency_scale_s": 120.0,
+    "carbon_scale_g": 5.0,
+    "accuracy_gain_scale": 0.1,
+    "gamma": 0.95,
+    "replay_capacity": 10000,
+    "replay_batch": 32,
+    "target_interval": 25
+  },
+  "measurement_type": "SIMULATED_INFRASTRUCTURE; actual classifier evaluation",
+  "carbon_model": "Scenario W, seconds and gCO2e/kWh; includes idle clients and 30W coordinator at 400g/kWh. Not measured hardware energy or wall-clock latency.",
+  "python": "3.11.9",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "versions": {
+    "torch": "2.5.1+cpu",
+    "torchvision": "0.20.1+cpu",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1"
+  },
+  "git_commit": "14db423e952ee90ab881c518027a2733150705ff",
+  "git_dirty": true,
+  "datasets": {
+    "44": {
+      "source": "torchvision.datasets.MNIST:official-train-and-test",
+      "subset_sha256": "fd9ad6f460557b39c231373380265636db6ef6dfc5c5764c754df41fbbbe1707",
+      "train_samples": 2000,
+      "validation_samples": 300,
+      "test_samples": 300,
+      "partition_sizes": [
+        115,
+        237,
+        210,
+        130,
+        239,
+        199,
+        276,
+        105,
+        308,
+        181
+      ]
+    }
+  },
+  "training": [],
+  "engine_sha256": "afa73b5080464456f1c98420c1a7aea1343eecd81ee4eb1e68db8567f2c3370d",
+  "wall_seconds": 49.66151829999944,
+  "completed_utc": "2026-11-17T15:32:57.930947+00:00",
+  "artifact_sha256": {
+    "analysis.json": "596498235b4f8d6b793ae10501e606b24afded246510fd9df17981249e649407",
+    "results.json": "7d0f6e230854b027d88ee6b4bbbf8e86e9a34ab63ab3f6368b044fa3de0ea66b",
+    "source_snapshot.zip": "b59b8c87144185ce7b4a6fcc2877064ab0cdef729512f974cee34893e4026a5d",
+    "trajectories.json": "76f3f4819b68c52087e1261d44afa39d91363391e291c3fdeab14e0b419578ca"
+  }
+}

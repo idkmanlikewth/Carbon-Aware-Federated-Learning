@@ -1,0 +1,11 @@
+{
+  "cifar10": {
+    "official_url": "https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz",
+    "mirror_used": "https://huggingface.co/datasets/MIT-OL-AI-D/cifar-10-python/resolve/main/cifar-10-python.tar.gz",
+    "expected_and_observed_md5": "c58f30108f718f92721af3b95e74349a",
+    "verification": "Archive checksum matched torchvision.datasets.CIFAR10.tgz_md5 before extraction. Torchvision verified the extracted dataset files. Initial slow official-host download was stopped before any CIFAR training and preserved outside the evidence directory."
+  },
+  "mnist": {"loader": "torchvision.datasets.MNIST", "download": "Torchvision official fallback mirror and built-in integrity verification"},
+  "fashion-mnist": {"loader": "torchvision.datasets.FashionMNIST", "download": "Torchvision official source and built-in integrity verification"},
+  "measurements": "No physical energy or carbon measurements were collected."
+}
