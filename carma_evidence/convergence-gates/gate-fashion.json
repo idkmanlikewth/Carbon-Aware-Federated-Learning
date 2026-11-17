@@ -1,0 +1,173 @@
+{
+  "status": "complete",
+  "config": {
+    "dataset": "fashion-mnist",
+    "clients": 10,
+    "rounds": 15,
+    "local_epochs": 2,
+    "batch_size": 64,
+    "learning_rate": 0.001,
+    "optimizer": "adam",
+    "partition": "iid",
+    "alpha": 0.5,
+    "train_samples": 6000,
+    "validation_samples": 1000,
+    "test_samples": 1000,
+    "participation": 0.5,
+    "seeds": [
+      11
+    ],
+    "policies": [
+      "fedavg"
+    ],
+    "episodes": 4,
+    "replay_batch": 32,
+    "target_interval": 20,
+    "gamma": 0.95,
+    "accuracy_target": 0.85,
+    "carbon_budget_g": 20.0,
+    "time_budget_s": 1200.0,
+    "risk_alpha": 0.9,
+    "risk_weight": 0.2,
+    "uncertainty": 0.2,
+    "heterogeneity": 1.0,
+    "availability": 0.95,
+    "dynamic_carbon": true,
+    "scenario_shift": 1.0,
+    "historical_trace": null,
+    "profiles": "config.json",
+    "download": false,
+    "data_dir": "data",
+    "threads": 2
+  },
+  "results": [
+    {
+      "seed": 11,
+      "test_accuracy": 0.86,
+      "test_loss": 0.3949227981567383,
+      "validation_history": [
+        {
+          "round": 0,
+          "validation_accuracy": 0.072,
+          "validation_loss": 2.3124410400390625
+        },
+        {
+          "round": 1,
+          "validation_accuracy": 0.647,
+          "validation_loss": 1.2282132263183594,
+          "training_wall_s": 3.7646011000006183
+        },
+        {
+          "round": 2,
+          "validation_accuracy": 0.699,
+          "validation_loss": 0.8005561065673829,
+          "training_wall_s": 3.9085510999993858
+        },
+        {
+          "round": 3,
+          "validation_accuracy": 0.731,
+          "validation_loss": 0.7135975799560547,
+          "training_wall_s": 3.89816780000001
+        },
+        {
+          "round": 4,
+          "validation_accuracy": 0.74,
+          "validation_loss": 0.6665602874755859,
+          "training_wall_s": 3.746935499999381
+        },
+        {
+          "round": 5,
+          "validation_accuracy": 0.763,
+          "validation_loss": 0.6189290161132812,
+          "training_wall_s": 3.7531191999996736
+        },
+        {
+          "round": 6,
+          "validation_accuracy": 0.769,
+          "validation_loss": 0.5794830322265625,
+          "training_wall_s": 3.7787796000002345
+        },
+        {
+          "round": 7,
+          "validation_accuracy": 0.791,
+          "validation_loss": 0.544921974182129,
+          "training_wall_s": 3.7664503000005425
+        },
+        {
+          "round": 8,
+          "validation_accuracy": 0.801,
+          "validation_loss": 0.519933235168457,
+          "training_wall_s": 3.741095999999743
+        },
+        {
+          "round": 9,
+          "validation_accuracy": 0.806,
+          "validation_loss": 0.5002078170776367,
+          "training_wall_s": 3.226059699999496
+        },
+        {
+          "round": 10,
+          "validation_accuracy": 0.812,
+          "validation_loss": 0.48434326934814453,
+          "training_wall_s": 1.8967436000002635
+        },
+        {
+          "round": 11,
+          "validation_accuracy": 0.823,
+          "validation_loss": 0.466273681640625,
+          "training_wall_s": 1.771419099999548
+        },
+        {
+          "round": 12,
+          "validation_accuracy": 0.821,
+          "validation_loss": 0.4583756942749023,
+          "training_wall_s": 1.770496799999819
+        },
+        {
+          "round": 13,
+          "validation_accuracy": 0.825,
+          "validation_loss": 0.44188382720947267,
+          "training_wall_s": 1.7472447999998622
+        },
+        {
+          "round": 14,
+          "validation_accuracy": 0.828,
+          "validation_loss": 0.44226731872558595,
+          "training_wall_s": 1.7353972000000795
+        },
+        {
+          "round": 15,
+          "validation_accuracy": 0.836,
+          "validation_loss": 0.42440655517578124,
+          "training_wall_s": 2.847095199999785
+        }
+      ],
+      "data": {
+        "source": "torchvision.datasets.FashionMNIST",
+        "subset_sha256": "c204a9db07cd44a82d301e523b0579f7a7dd3cf0e30f53fe4ef4862083902592",
+        "split": "disjoint official-training subsets for train/validation; official test used only for final evaluation",
+        "train_indices_sha256": "69f80e770bf269cf664b5557f3b6a0277bbbd47530ea0b7b58fa2810b0f1b9a9",
+        "normalization_mean": [
+          0.28624409437179565
+        ],
+        "normalization_std": [
+          0.3531593382358551
+        ],
+        "partition_sizes": [
+          600,
+          600,
+          600,
+          600,
+          600,
+          600,
+          600,
+          600,
+          600,
+          600
+        ]
+      }
+    }
+  ],
+  "wall_s": 47.25575359999948,
+  "purpose": "All-client conventional FedAvg convergence diagnostic, not a scheduler comparison or infrastructure measurement"
+}

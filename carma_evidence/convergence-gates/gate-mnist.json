@@ -1,0 +1,143 @@
+{
+  "status": "complete",
+  "config": {
+    "dataset": "mnist",
+    "clients": 10,
+    "rounds": 10,
+    "local_epochs": 2,
+    "batch_size": 64,
+    "learning_rate": 0.001,
+    "optimizer": "adam",
+    "partition": "iid",
+    "alpha": 0.5,
+    "train_samples": 6000,
+    "validation_samples": 1000,
+    "test_samples": 1000,
+    "participation": 0.5,
+    "seeds": [
+      11
+    ],
+    "policies": [
+      "fedavg"
+    ],
+    "episodes": 4,
+    "replay_batch": 32,
+    "target_interval": 20,
+    "gamma": 0.95,
+    "accuracy_target": 0.85,
+    "carbon_budget_g": 20.0,
+    "time_budget_s": 1200.0,
+    "risk_alpha": 0.9,
+    "risk_weight": 0.2,
+    "uncertainty": 0.2,
+    "heterogeneity": 1.0,
+    "availability": 0.95,
+    "dynamic_carbon": true,
+    "scenario_shift": 1.0,
+    "historical_trace": null,
+    "profiles": "config.json",
+    "download": false,
+    "data_dir": "data",
+    "threads": 2
+  },
+  "results": [
+    {
+      "seed": 11,
+      "test_accuracy": 0.962,
+      "test_loss": 0.1111196117401123,
+      "validation_history": [
+        {
+          "round": 0,
+          "validation_accuracy": 0.106,
+          "validation_loss": 2.301946716308594
+        },
+        {
+          "round": 1,
+          "validation_accuracy": 0.733,
+          "validation_loss": 1.1626154174804688,
+          "training_wall_s": 3.717829299999721
+        },
+        {
+          "round": 2,
+          "validation_accuracy": 0.858,
+          "validation_loss": 0.4862649459838867,
+          "training_wall_s": 3.8764467999999397
+        },
+        {
+          "round": 3,
+          "validation_accuracy": 0.911,
+          "validation_loss": 0.35936668395996096,
+          "training_wall_s": 3.819604000000254
+        },
+        {
+          "round": 4,
+          "validation_accuracy": 0.919,
+          "validation_loss": 0.2916897773742676,
+          "training_wall_s": 3.7388893000006647
+        },
+        {
+          "round": 5,
+          "validation_accuracy": 0.927,
+          "validation_loss": 0.23937071228027343,
+          "training_wall_s": 3.678691300000537
+        },
+        {
+          "round": 6,
+          "validation_accuracy": 0.939,
+          "validation_loss": 0.20697552490234375,
+          "training_wall_s": 3.733452500000567
+        },
+        {
+          "round": 7,
+          "validation_accuracy": 0.953,
+          "validation_loss": 0.17232975006103515,
+          "training_wall_s": 3.6760073000004923
+        },
+        {
+          "round": 8,
+          "validation_accuracy": 0.953,
+          "validation_loss": 0.1550129222869873,
+          "training_wall_s": 3.6665185000001657
+        },
+        {
+          "round": 9,
+          "validation_accuracy": 0.96,
+          "validation_loss": 0.13521228218078613,
+          "training_wall_s": 3.612210700000105
+        },
+        {
+          "round": 10,
+          "validation_accuracy": 0.956,
+          "validation_loss": 0.1287404613494873,
+          "training_wall_s": 1.8871437000007063
+        }
+      ],
+      "data": {
+        "source": "torchvision.datasets.MNIST",
+        "subset_sha256": "f00c427b8a74158138178aa655b80cafdea3e270b030c114093063a77912dd4f",
+        "split": "disjoint official-training subsets for train/validation; official test used only for final evaluation",
+        "train_indices_sha256": "69f80e770bf269cf664b5557f3b6a0277bbbd47530ea0b7b58fa2810b0f1b9a9",
+        "normalization_mean": [
+          0.13071584701538086
+        ],
+        "normalization_std": [
+          0.30817219614982605
+        ],
+        "partition_sizes": [
+          600,
+          600,
+          600,
+          600,
+          600,
+          600,
+          600,
+          600,
+          600,
+          600
+        ]
+      }
+    }
+  ],
+  "wall_s": 36.81339039999966,
+  "purpose": "All-client conventional FedAvg convergence diagnostic, not a scheduler comparison or infrastructure measurement"
+}

@@ -1,0 +1,57 @@
+# CARMA-FL execution and analysis protocol
+
+## Status and immutable research scope
+
+**A Multi-Objective Reinforcement Learning Model for Optimizing the Latency–Carbon Trade-off in Federated Computing.**
+
+The original cream/vermilion four-plate interface remains. CARMA-FL is a candidate method inside its research workspace. Earlier near-random experiments remain available as archived evidence; their results are never overwritten or relabeled as converged.
+
+## Establish learning before scheduling
+
+The earlier research path used a very small CNN with coarse adaptive pooling, no train-only standardization, plain SGD, tiny subsets, few local batches and communication rounds, and sparse client selection. Those settings together undertrained the classifier; scalar costs could then dominate small accuracy gains. The earlier tests verified execution, not scientific adequacy. A bundled repair is not a controlled attribution of every weakness to one factor.
+
+The CARMA path uses train-only channel standardization, stronger grayscale/spatial and color CNNs, Adam by default (SGD with momentum remains supported), deterministic shuffled local batches, two local epochs, larger subsets and real multi-round rollouts. CIFAR-10 uses GroupNorm to avoid averaging client-specific BatchNorm running statistics and training-only horizontal flips. Data are preloaded to the chosen CPU/CUDA device. The diagnostic gate trains conventional all-client FedAvg independently of the scheduler. Gate validation curves and final test scores are retained, including loss curves, sample sizes and seeds. These are subset baselines, not full-dataset SOTA comparisons or proof of saturated convergence.
+
+Training and validation are disjoint subsets of the official training split. Official test samples are never used for rewards, action selection, adaptation, early stopping or classifier training. Normalization is fitted on training inputs only. IID and Dirichlet alpha are configurable; indices are partitioned disjointly with explicit minimum-size rebalancing. Each independent seed regenerates subsets, partitions, classifier parameters, Q parameters, replay and exogenous traces. All policies in a seed share paired evaluation data, initialization and exogenous draws.
+
+## Candidate algorithm
+
+The per-client state has 16 features: sample fraction, predicted duration/energy/intensity/bandwidth, calibrated duration/intensity widths, availability estimate, participation, staleness, observed local loss, label entropy, marginal latency/carbon CVaR and current availability/selection flags. A shared encoder plus mean-pooled set context and ten global features yields one Q value per client. Sequential masked selection chooses k distinct available clients without subset enumeration. Feature prediction is cached per round; inference is O(Nk) network evaluation with fixed parameter count, not an exponential action catalogue.
+
+Replay stores each sequential selection transition. Intermediate picks receive zero immediate reward; the final pick receives the actual federated-round reward. Targets use the next preference and next availability mask. Standard DQN uses an unconditioned max-target estimator; pc_ddqn uses Double DQN and fixed within-round preferences. CARMA and ablations use Double DQN, replay, target updates, terminal masking, Huber loss and gradient clipping. Training episodes reset the classifier and use separate seeds and infrastructure draws. Anchor and sampled latency/carbon preferences vary across training episodes. Evaluation freezes the policy and disables exploration.
+
+CARMA primarily penalizes normalized latency and carbon. Validation accuracy is a performance constraint with a declared ramp target, target * min(1, round / (0.6 * rounds)); the final target is not reduced after seeing results. Projected Lagrangian updates increase pressure when accuracy falls below that ramp. Constraint urgency depends on validation accuracy, training loss, recent loss improvement and training progress. Latency/carbon preferences respond to remaining time and carbon budgets. This is a heuristic feedback controller and soft constrained learning; it does not guarantee feasibility. All violations and failed targets are retained.
+
+Historical uncertainty uses client-specific positive observed/nominal ratios for execution duration, energy, grid intensity and bandwidth; availability is estimated from preceding heartbeats with a declared prior. Default historical observations are simulated prior samples, never measured probes. Initial mean fitting and residual calibration use disjoint 20/40 observation blocks. Selected clients' residuals update only after realization. Current availability and scenario CI inputs are visible; future noise and final test outcomes are not. Intervals and coverage are audited per marginal, not as simultaneous joint guarantees. Finite histories, adaptive selection and unseen shifts can break nominal coverage.
+
+Risk penalties use empirical upper-tail CVaR with fractional tail mass. The maximum marginal duration CVaR and sum of selected clients' marginal carbon CVaRs form a cohort risk surrogate. This is not exact CVaR of the coupled straggler/idle total, nor a hard chance constraint. The actual evaluation reports empirical round-level latency/carbon CVaR separately. Cross-client dependence is not learned. These limitations must appear in publication claims.
+
+## Hardware and carbon provenance
+
+PC1's reported i7-12700/8 GB descriptor and 0.065 kWh over 190 min reference are preserved. Calculated mean power is approximately 20.53 W, with instrument/workload details still unverified. Reusing it as active federated power is an assumption. PC2 (16 GB), PC3 (32 GB/8 GB GPU) and PC4 (16 GB/4 GB GPU) retain scenario speed/power ratios; RAM/VRAM do not imply measured training speed. At larger N these four descriptors repeat as virtual tiers. Classifier acceleration on the host RTX GPU is separate from these virtual client descriptors.
+
+Energy includes active work, communication, idle tails and a 30 W coordinator; emissions multiply Wh by gCO2e/kWh / 1000. All such costs are modeled. Measured perf_counter training/inference wall time is recorded separately. Coordinator-only overhead carbon assumes 30 W and excludes GPU energy; it is not a full measured hardware footprint. Virtual training-rollout scenario energy/carbon is also reported separately. Training cost cannot be hidden when comparing practical efficiency or amortized without an explicit reuse horizon.
+
+Hardware/profile JSON and optional preceding observation CSV can replace scenario inputs; see carma_inputs/README.md. Profile files and observation files are hashed. Public historical GB carbon observations are preserved with their raw response, source and disjoint replay windows. They do not measure the user's local grid or hardware.
+
+## Independent comparisons and ablations
+
+The campaign compares FedAvg, random, round-robin, fastest, carbon-greedy, weighted, standard DQN, pc_ddqn, Oort-style and CARMA. FedAvg selects all currently available clients; other controls share the declared participation fraction. Oort-style is inspired/simplified, not a faithful reproduction. Published-method overlaps and remaining reproduction requirements are documented in CARMA_LITERATURE.md.
+
+Each ablation changes one declared component: no_uncertainty replaces calibrated mean/interval prediction features with nominal point forecasts, zero widths and nominal availability, while retaining the separate empirical CVaR block; no_risk removes only the CVaR features and reward penalty; no_adaptation fixes within-episode preferences/urgency; no_constraint removes only the Lagrangian performance penalty, without introducing an accuracy-gain bonus; no_conditioning zeroes the preference input; no_learned_selection substitutes a declared risk/utility heuristic while retaining the other feedback mechanisms. Regression tests check the separated predictor/risk features and the exact no-constraint reward. A development protocol with confounded switches was stopped and preserved outside the locked campaign; its partial records are not pooled into the matrix.
+
+The saved plan includes 24 configurations and 1,110 policy evaluations with ten independent seeds each: all baselines/ablations on three datasets; IID and Dirichlet strengths; static/dynamic carbon; hardware heterogeneity; availability; uncertainty; held-out shift; preference/risk sensitivity; historical carbon replay; matched 4/10/20/50/100-client scaling at 30 rounds; and a longer 24-episode RL diagnostic. This is a declared coverage matrix, not a full factorial crossing of every factor. Pending studies are not results. Full completion is determined from manifests, not the plan.
+
+## Endpoints and inference
+
+Primary endpoint: validation-accuracy-feasible two-dimensional cost hypervolume with latency/time_budget and carbon/carbon_budget, fixed maximization reference (-1,-1). A final validation-infeasible point contributes zero. Costs outside the reference also contribute zero and are not clipped. Pareto fronts include only feasible points. Held-out test accuracy is reported alongside this endpoint and must not be hidden behind the validation constraint.
+
+Time/carbon to target use the first observed validation-target hit. A target never reached is null/right-censored, never zero-filled. Conditional means report how many seeds reached target; hit rates and final feasibility are separate. Report total modeled energy, latency/carbon, budget and accuracy violations, round-tail CVaR, fairness and policy overhead. A transient hit followed by final failure remains visible as such.
+
+Inference uses independent seeds, Student-t 95% intervals, paired sign-flip permutation tests on feasible HV, and Holm correction within each study's baseline family. For ten seeds the permutation test enumerates all 1,024 sign patterns. This does not correct across every exploratory scenario in the campaign; scenario-wide claims need an additional preregistered multiplicity rule. Small validation/test subsets and ten seeds still limit precision. No baseline is assumed inferior.
+
+## Reproducibility, interruptions and timing
+
+The runner saves an atomic policy-level checkpoint, final classifier/policy states, source snapshot/hash, input hashes, package/device metadata, raw trajectories and all training curves. Resume requires unchanged config, runtime source and input hashes; it skips completed seed-policy pairs. An interrupted current policy restarts from its independent seed. A campaign supervisor can adopt an already-running child and can run up to three independent studies concurrently. Only the supervisor was replaced to enable concurrency; the initial running study was adopted without restarting it.
+
+Concurrent studies share the host GPU. Actual wall overhead is contention-dependent and must not be called isolated latency or energy benchmarking. Primary infrastructure latency/carbon uses fixed seeded scenario draws, with wall overhead recorded separately. Re-run overhead measurements in isolation before making a physical efficiency claim. Reproduce any completed study with its exact JSON config in a fresh directory; rerun a frozen campaign command to resume. Use --plan-only to review the matrix. A local experiment can continue while chat usage is paused, provided its process and computer remain running.

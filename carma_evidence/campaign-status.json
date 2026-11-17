@@ -1,0 +1,153 @@
+{
+  "status": "running",
+  "workers": 3,
+  "completed_studies": 0,
+  "planned_studies": 24,
+  "completed_evaluations": 114,
+  "studies": [
+    {
+      "name": "main-mnist",
+      "status": "running",
+      "evaluations": 60,
+      "expected": 160
+    },
+    {
+      "name": "main-fashion",
+      "status": "running",
+      "evaluations": 45,
+      "expected": 160
+    },
+    {
+      "name": "main-cifar",
+      "status": "running",
+      "evaluations": 9,
+      "expected": 160
+    },
+    {
+      "name": "iid",
+      "status": "pending",
+      "evaluations": 0,
+      "expected": 0
+    },
+    {
+      "name": "noniid-01",
+      "status": "pending",
+      "evaluations": 0,
+      "expected": 0
+    },
+    {
+      "name": "noniid-10",
+      "status": "pending",
+      "evaluations": 0,
+      "expected": 0
+    },
+    {
+      "name": "static-carbon",
+      "status": "pending",
+      "evaluations": 0,
+      "expected": 0
+    },
+    {
+      "name": "homogeneous",
+      "status": "pending",
+      "evaluations": 0,
+      "expected": 0
+    },
+    {
+      "name": "heterogeneous-2",
+      "status": "pending",
+      "evaluations": 0,
+      "expected": 0
+    },
+    {
+      "name": "availability-06",
+      "status": "pending",
+      "evaluations": 0,
+      "expected": 0
+    },
+    {
+      "name": "uncertainty-0",
+      "status": "pending",
+      "evaluations": 0,
+      "expected": 0
+    },
+    {
+      "name": "uncertainty-05",
+      "status": "pending",
+      "evaluations": 0,
+      "expected": 0
+    },
+    {
+      "name": "unseen-shift-2",
+      "status": "pending",
+      "evaluations": 0,
+      "expected": 0
+    },
+    {
+      "name": "latency-preference",
+      "status": "pending",
+      "evaluations": 0,
+      "expected": 0
+    },
+    {
+      "name": "carbon-preference",
+      "status": "pending",
+      "evaluations": 0,
+      "expected": 0
+    },
+    {
+      "name": "risk-low",
+      "status": "pending",
+      "evaluations": 0,
+      "expected": 0
+    },
+    {
+      "name": "risk-high",
+      "status": "pending",
+      "evaluations": 0,
+      "expected": 0
+    },
+    {
+      "name": "historical-carbon",
+      "status": "pending",
+      "evaluations": 0,
+      "expected": 0
+    },
+    {
+      "name": "scale-4",
+      "status": "pending",
+      "evaluations": 0,
+      "expected": 0
+    },
+    {
+      "name": "scale-10",
+      "status": "pending",
+      "evaluations": 0,
+      "expected": 0
+    },
+    {
+      "name": "scale-20",
+      "status": "pending",
+      "evaluations": 0,
+      "expected": 0
+    },
+    {
+      "name": "scale-50",
+      "status": "pending",
+      "evaluations": 0,
+      "expected": 0
+    },
+    {
+      "name": "scale-100",
+      "status": "pending",
+      "evaluations": 0,
+      "expected": 0
+    },
+    {
+      "name": "rl-convergence",
+      "status": "pending",
+      "evaluations": 0,
+      "expected": 0
+    }
+  ]
+}

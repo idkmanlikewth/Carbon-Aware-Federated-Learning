@@ -1,67 +1,91 @@
-# Carbon-Aware Federated Learning Research Lab
+# Carbon-Aware Federated Learning
 
-Preference-conditioned Double DQN, adaptive multi-objective rewards, dynamic virtual clients, independent-seed experiments and an interactive research dashboard.
+**A Multi-Objective Reinforcement Learning Model for Optimizing the Latency–Carbon Trade-off in Federated Computing.**
 
-Accuracy comes from trained classifiers. Carbon, energy and infrastructure latency are modeled scenario estimates, not physical measurements. The included short runs verify execution and reproducibility; they do not establish convergence or DQN superiority.
+CARMA-FL (Carbon-Aware Risk-Adaptive Multi-Objective Reinforcement Learning for Federated Computing) is a candidate research framework. Novelty and superiority are not assumed. The original four-plate cream-and-vermilion workbench is preserved.
 
-## Install and launch
+## Run the original interface
 
-Python 3.11 recommended. Windows: double-click START_RESEARCH.bat (also the default START_DEMO.bat / START_WINDOWS.bat). Linux/macOS: bash START_DEMO.sh.
+Python 3.11 recommended. Install dependencies into a virtual environment, then launch:
 
 ```bash
-python -m venv .venv
-# Windows: .venv\Scripts\activate
-# Linux/macOS: source .venv/bin/activate
 python -m pip install -r requirements-research.txt
 python demo_server.py
 ```
 
-For CPU-only PyTorch, first install torch==2.5.1 torchvision==0.20.1 using the official CPU wheel index https://download.pytorch.org/whl/cpu. The engine runs on CPU with deterministic algorithms and one PyTorch thread.
+Windows: START_DEMO.bat / START_RESEARCH.bat. Linux/macOS: bash START_DEMO.sh. The UI opens at http://127.0.0.1:8765. Choose **8-Layer MORL Pipeline → Preference-Conditioned DQN Research** (or /research). CARMA-FL is the default research engine; the earlier weak-budget protocol is retained as an explicitly archived option. Topology Replay and the other original plates retain their design.
 
-The original cream-and-vermilion React workbench remains the default at http://127.0.0.1:8765. Its four plates and topology replay retain their original design. Open **8-Layer MORL Pipeline → Preference-Conditioned DQN Research** for the upgraded engine, or navigate directly to `/research`. Choose dataset, clients, training budget, independent seeds and ablations. Enable download for the first benchmark run. Results and logs refresh automatically; exports include raw results, analysis, manifest and checkpoints. Research execution requires the local Python server; the existing serverless demo is unchanged.
-
-The optional Streamlit analysis interface remains available through `python -m streamlit run research/dashboard.py`; the default launchers open the original React workbench.
-
-## Reproduce experiments
+For NVIDIA CUDA 12.4, install the compatible wheels in your environment before the remaining dependencies:
 
 ```bash
-python -m research.run --dataset mnist --download --clients 10 --rounds 5 --episodes 8 --train-samples 1000 --eval-samples 200 --seeds 11 22 33 --output research_runs/mnist
-python -m research.run --dataset fashion-mnist --download --output research_runs/fashion
-python -m research.run --dataset cifar10 --download --output research_runs/cifar
-python -m research.run --dataset mnist --download --clients 100 --output research_runs/scale100
+python -m pip install torch==2.5.1 torchvision==0.20.1 --index-url https://download.pytorch.org/whl/cu124
+python -m pip install -r requirements-research.txt
+python -c "import torch; print(torch.cuda.is_available(), torch.cuda.get_device_name())"
 ```
 
-Use a new output directory for every run. Data are cached under data/ and excluded from Git. Missing benchmark data cause an explicit error; no synthetic substitution occurs. The synthetic dataset option is an explicitly labeled smoke fixture.
+The equivalent CPU wheel index is https://download.pytorch.org/whl/cpu. CARMA device auto chooses available CUDA, otherwise CPU. An explicit cuda request fails if unavailable. Launch the server using the CUDA environment, or set CARMA_PYTHON to its Python executable. environment-cuda-lock.txt records the tested GPU environment; environment-lock.txt records the earlier CPU environment. The optional separate Streamlit viewer remains at python -m streamlit run research/dashboard.py.
 
-Every independent seed regenerates subsets, Dirichlet non-IID partitions, classifier initialization, replay, policy training and infrastructure traces. Policies share evaluation data, model initialization and precomputed exogenous traces within a seed. Validation drives reward and adaptation; held-out test accuracy is evaluated only after the final round. Validation and final test are disjoint halves of a sampled official test subset; official training data supply clients.
+## Convergence before scheduling
 
-## Implemented methods
+The revised conventional FedAvg CPU development gates used a stronger classifier, train-only standardization, Adam, shuffled batches, larger subsets and more local work. Observed held-out test accuracies were MNIST 96.2%, Fashion-MNIST 86.0%, and CIFAR-10 66.0%. These are one-seed learning gates, not ten-seed scheduler comparisons or claims of convergence to a global optimum. A separate three-seed validation-only factorial diagnostic isolates architecture, optimizer and standardization at a common budget.
 
-- Preference-conditioned Double DQN: ten observation features plus four preference weights, a 64-by-64 MLP, replay, target network, Double DQN targets, terminal masking, Huber loss, gradient clipping and epsilon exploration.
-- Scalable actions: six rules rank available clients by random score, duration, modeled carbon, participation, dataset size or a balanced score. The DQN chooses a rule, which selects a fixed fraction of clients. Network size is independent of client count. This is a restricted scheduling action space, not enumeration of every possible subset.
-- Adaptive MORL: a declared feedback controller raises accuracy preference when validation accuracy falls behind a rising target, then renormalizes the simplex. Current and next preferences are stored for Bellman updates. The controller is heuristic, with no constraint guarantee.
-- Normalized reward: accuracy gain / 0.1, negative latency / 120 seconds, negative carbon / 5 grams and negative participation Gini. Clipping bounds components; every round records clipping and preferences. Bounds are fixed before evaluation.
-- Pareto/hypervolume: exact three-objective analysis maximizes final test accuracy and minimizes cumulative normalized latency and carbon. The fixed maximization reference is (0, -1, -1). Out-of-reference points are reported and excluded, without silently clipping costs. Fairness is reported and rewarded outside this three-objective hypervolume.
-- Statistics: independent-seed hypervolume, means, 95% Student-t intervals, paired two-sided t tests against adaptive DQN, Holm correction and paired standardized effects. Preferences within a seed are not independent replicates. Three seeds are low power.
+Training and validation are disjoint subsets of official training data. Official test data is used only for final evaluation. Missing benchmark data fails explicitly; synthetic is an explicitly named smoke fixture. The original chance-level evidence is preserved, not overwritten or presented as scientifically adequate.
 
-Eight policies run by default: adaptive DQN; fixed preference (no adaptation); unconditioned DQN; static-intensity training; raw rewards; random; carbon greedy; participation fairness. Each learned ablation changes one feature relative to adaptive DQN. All evaluate under the same dynamic conditions.
+## CARMA-FL mechanisms
 
-## Verification and evidence
+- Shared permutation-equivariant per-client Q scorer with pooled context, masked sequential cohort selection and fixed parameter count for 4–100 virtual clients.
+- Preference-conditioned Double DQN, replay, target network, terminal masking, Huber loss and independent policy retraining for each seed.
+- Client-specific causal historical cost estimation, split calibration, online residual updates and empirically audited prediction intervals for duration, energy, carbon intensity and bandwidth; availability history is also estimated.
+- Empirical CVaR risk features/reward, with a documented marginal cohort surrogate rather than an unsupported joint-risk guarantee.
+- Convergence-aware preference/constraint urgency using validation accuracy, training loss, loss improvement, and remaining time/carbon budgets.
+- Soft accuracy constraints with projected Lagrangian penalties. Latency and carbon remain the cost objectives. Violations are retained; feasibility is not guaranteed.
+- Meter-anchored virtual profiles, replaceable measured-power inputs and a historical-observation CSV interface. The reported 0.065 kWh / 190 min reference is preserved with unverified instrument details. PC2–PC4 and timing ratios remain scenarios.
+- Public historical UK carbon-intensity replay with a preserved raw API response and separate training/evaluation windows.
+
+Infrastructure energy, latency and emissions are modeled, not physical readings. Classifier outcomes and wall overhead are observed. Virtual clients run on one host; descriptors do not imply physical devices. Coordinator-only overhead energy excludes GPU energy and is not a full measured carbon footprint.
+
+## Locked campaign and resuming
 
 ```bash
-python -m pytest tests/test_research.py tests/test_dashboard.py tests/test_workbench.py -q
+python -m carma.campaign --output carma_runs/ccgrid2027 --device cuda --plan-only
+python -m carma.campaign --output carma_runs/ccgrid2027 --device cuda --workers 3
+python -m carma.status
+```
+
+The saved matrix has 24 configurations and 1,110 policy evaluations: ten independent seeds per configuration, all baseline/ablation comparisons on three datasets, non-IID strengths, static/dynamic carbon, heterogeneity, availability, uncertainty, unseen shifts, reward sensitivity, real carbon-trace replay, matched 4/10/20/50/100-client scaling, and longer policy-training diagnostics. This is coverage across factors, not a full factorial cross of every factor. **A plan is not a completed experiment.** The report and dashboard show actual completed counts and label interim records.
+
+Rerun the same campaign command to resume. Atomic checkpoints preserve completed seed-policy pairs. Runtime source, configuration and input hashes must match; interrupted current policies restart from their independent seeds. Concurrent GPU studies have contention-dependent wall timings, explicitly recorded. Keep the machine and experiment processes running during a chat pause; no account reset is required for local computation itself.
+
+Run a single saved JSON configuration in a new directory:
+
+```bash
+python -m carma.run --config carma_runs/ccgrid2027/main-mnist.config.json --output carma_runs/new-study
+python -m carma.run --config carma_runs/ccgrid2027/main-mnist.config.json --output carma_runs/new-study --resume
+```
+
+## Comparisons and honest inference
+
+Baselines: conventional FedAvg, random, round-robin, fastest, carbon-greedy, weighted heuristic, standard DQN, preference-conditioned Double DQN, Oort-style, and CARMA-FL. Six independently switched ablations remove calibrated prediction, CVaR risk, adaptation, accuracy constraints, preference conditioning, or learned selection. Oort-style is simplified; no published algorithm is falsely labeled a faithful reproduction.
+
+Primary analysis is accuracy-feasible 2D latency/carbon hypervolume with fixed reference bounds. A final validation-infeasible point contributes zero. Target costs remain censored when never reached. Reports retain final test accuracy, target-hit/final-feasibility rates, total modeled costs, violations, tail CVaR, fairness, interval coverage, policy training and inference overhead. Independent-seed confidence intervals and paired permutation tests with per-study Holm correction are included. No carbon savings are claimed by accepting failed accuracy.
+
+[Research protocol](docs/CARMA_PROTOCOL.md) · [Literature and novelty review](docs/CARMA_LITERATURE.md) · [Executed results and current campaign status](docs/CARMA_RESULTS.md)
+
+## Verify evidence and application
+
+```bash
+python -m pytest tests/test_carma.py tests/test_research.py tests/test_dashboard.py tests/test_workbench.py -q
 python tests.py
 python tests_demo.py
 python tests_pipeline.py
+python -m research.verify evidence
+python -m carma.verify carma_evidence
+python -m carma.report
 cd frontend
 npm ci
 npm run build
 ```
 
-CI checks research tests, dashboard rendering, the existing pipeline and the frontend build. Executed evidence under evidence/ includes manifests, dataset hashes, source digests, versions, artifact hashes, traces, results, analysis and checkpoints. The recorded pre-upgrade commit and dirty flag reflect when experiments actually ran; the source digest identifies the engine used.
+CARMA verification requires completed schema-2 studies, checks artifact/source hashes, seed independence, actual round counts, availability, target censoring, totals, coverage and reproducible analysis. Until the first locked study completes, carma_evidence contains only explicitly labeled convergence diagnostics and planned/status files. Completed studies are added by carma.report. Published evidence omits large classifier states while preserving their hashes; policy states and raw metrics are included. Full checkpoints remain in the original local runs and complete evidence bundle. Use --require-checkpoints on original runs.
 
-See [research protocol](docs/RESEARCH_PROTOCOL.md) and [executed verification report](docs/VERIFICATION.md).
-
-The prior NumPy demo and React console remain available through python demo_server.py or START_LEGACY.bat / START_LEGACY.sh. Their synthetic results and historical provenance belong to that legacy demo, and are not consumed by the research engine. See [legacy instructions](docs/LEGACY_DEMO.md).
-
-Implementation references: [PyTorch DQN tutorial](https://docs.pytorch.org/tutorials/intermediate/reinforcement_q_learning), [Fashion-MNIST loader](https://docs.pytorch.org/vision/main/generated/torchvision.datasets.FashionMNIST.html), [CIFAR-10 loader](https://docs.pytorch.org/vision/stable/generated/torchvision.datasets.CIFAR10.html).
+The earlier research engine remains under research/, with archived evidence under evidence/ and its [earlier verification report](docs/VERIFICATION.md). Those results and protocol are separate from CARMA-FL. [Original demo instructions](docs/LEGACY_DEMO.md) remain available.

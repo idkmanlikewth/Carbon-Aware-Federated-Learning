@@ -1,0 +1,6 @@
+{
+  "controlled-validation-diagnostics.json": "eb1cd6906845db8465330597f0f016df8884b178fc58a6655e63e5a47d325ba0",
+  "gate-cifar.json": "b24431fc921cc6dc8d5593b1adb01c5e6d4103fd680932c8cc966246a4ebdbf0",
+  "gate-fashion.json": "3a023a9eeb7f54d0e9a7ada6cb1cdcfba4474fc166da0603cfbba340aea09f7b",
+  "gate-mnist.json": "fe6890148f0643a9dca021bf303c1c653845357673fdf9a5cd1dda9eaf88694f"
+}

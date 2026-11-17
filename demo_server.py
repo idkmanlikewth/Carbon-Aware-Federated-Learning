@@ -158,6 +158,9 @@ class Handler(BaseHTTPRequestHandler):
                 query=parse_qs(path.query)
                 if path.path=='/api/research/runs':return self.send(200,service.list_runs())
                 if path.path=='/api/research/state':return self.send(200,service.state())
+                if path.path=='/api/research/campaign':
+                    campaign=BASE/'carma_runs'/'ccgrid2027'/'campaign.json'
+                    return self.send(200,json.loads(campaign.read_text()) if campaign.exists() else {'status':'not_started','jobs':[]})
                 identifier=query.get('id',[''])[0]
                 if path.path=='/api/research/result':return self.send(200,service.detail(identifier))
                 if path.path=='/api/research/export':

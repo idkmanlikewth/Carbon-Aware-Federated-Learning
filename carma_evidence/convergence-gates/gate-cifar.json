@@ -1,0 +1,267 @@
+{
+  "status": "complete",
+  "config": {
+    "dataset": "cifar10",
+    "clients": 10,
+    "rounds": 30,
+    "local_epochs": 2,
+    "batch_size": 64,
+    "learning_rate": 0.001,
+    "optimizer": "adam",
+    "partition": "iid",
+    "alpha": 0.5,
+    "train_samples": 10000,
+    "validation_samples": 1000,
+    "test_samples": 1000,
+    "participation": 0.5,
+    "seeds": [
+      11
+    ],
+    "policies": [
+      "fedavg"
+    ],
+    "episodes": 4,
+    "replay_batch": 32,
+    "target_interval": 20,
+    "gamma": 0.95,
+    "accuracy_target": 0.85,
+    "carbon_budget_g": 20.0,
+    "time_budget_s": 1200.0,
+    "risk_alpha": 0.9,
+    "risk_weight": 0.2,
+    "uncertainty": 0.2,
+    "heterogeneity": 1.0,
+    "availability": 0.95,
+    "dynamic_carbon": true,
+    "scenario_shift": 1.0,
+    "historical_trace": null,
+    "profiles": "config.json",
+    "download": false,
+    "data_dir": "data",
+    "threads": 2
+  },
+  "results": [
+    {
+      "seed": 11,
+      "test_accuracy": 0.66,
+      "test_loss": 0.9720763549804687,
+      "validation_history": [
+        {
+          "round": 0,
+          "validation_accuracy": 0.094,
+          "validation_loss": 2.3099080200195314
+        },
+        {
+          "round": 1,
+          "validation_accuracy": 0.257,
+          "validation_loss": 2.1574212341308594,
+          "training_wall_s": 24.606140300000334
+        },
+        {
+          "round": 2,
+          "validation_accuracy": 0.336,
+          "validation_loss": 1.7970743408203125,
+          "training_wall_s": 14.623778599999241
+        },
+        {
+          "round": 3,
+          "validation_accuracy": 0.373,
+          "validation_loss": 1.6885669555664062,
+          "training_wall_s": 19.25385390000065
+        },
+        {
+          "round": 4,
+          "validation_accuracy": 0.42,
+          "validation_loss": 1.5886768188476563,
+          "training_wall_s": 24.495326100000057
+        },
+        {
+          "round": 5,
+          "validation_accuracy": 0.441,
+          "validation_loss": 1.5201520080566406,
+          "training_wall_s": 13.462129100000311
+        },
+        {
+          "round": 6,
+          "validation_accuracy": 0.469,
+          "validation_loss": 1.4734797058105469,
+          "training_wall_s": 9.151717100000496
+        },
+        {
+          "round": 7,
+          "validation_accuracy": 0.485,
+          "validation_loss": 1.421994384765625,
+          "training_wall_s": 9.197452100000191
+        },
+        {
+          "round": 8,
+          "validation_accuracy": 0.492,
+          "validation_loss": 1.4050425720214843,
+          "training_wall_s": 9.16388360000019
+        },
+        {
+          "round": 9,
+          "validation_accuracy": 0.5,
+          "validation_loss": 1.363065673828125,
+          "training_wall_s": 9.071227600000384
+        },
+        {
+          "round": 10,
+          "validation_accuracy": 0.509,
+          "validation_loss": 1.3511610107421874,
+          "training_wall_s": 10.642462399999204
+        },
+        {
+          "round": 11,
+          "validation_accuracy": 0.53,
+          "validation_loss": 1.3188490600585938,
+          "training_wall_s": 9.282191000000239
+        },
+        {
+          "round": 12,
+          "validation_accuracy": 0.534,
+          "validation_loss": 1.285169464111328,
+          "training_wall_s": 19.07417600000008
+        },
+        {
+          "round": 13,
+          "validation_accuracy": 0.542,
+          "validation_loss": 1.250481689453125,
+          "training_wall_s": 14.098266999999396
+        },
+        {
+          "round": 14,
+          "validation_accuracy": 0.568,
+          "validation_loss": 1.226798095703125,
+          "training_wall_s": 19.190871499999957
+        },
+        {
+          "round": 15,
+          "validation_accuracy": 0.566,
+          "validation_loss": 1.198377471923828,
+          "training_wall_s": 16.091768799999954
+        },
+        {
+          "round": 16,
+          "validation_accuracy": 0.572,
+          "validation_loss": 1.1760024719238282,
+          "training_wall_s": 15.365092000000004
+        },
+        {
+          "round": 17,
+          "validation_accuracy": 0.59,
+          "validation_loss": 1.1493601684570312,
+          "training_wall_s": 9.053648900000553
+        },
+        {
+          "round": 18,
+          "validation_accuracy": 0.596,
+          "validation_loss": 1.1394241180419922,
+          "training_wall_s": 9.034817300000213
+        },
+        {
+          "round": 19,
+          "validation_accuracy": 0.613,
+          "validation_loss": 1.1194888153076172,
+          "training_wall_s": 8.985838600000534
+        },
+        {
+          "round": 20,
+          "validation_accuracy": 0.598,
+          "validation_loss": 1.1004339447021485,
+          "training_wall_s": 9.04782250000062
+        },
+        {
+          "round": 21,
+          "validation_accuracy": 0.617,
+          "validation_loss": 1.103041534423828,
+          "training_wall_s": 9.07144050000079
+        },
+        {
+          "round": 22,
+          "validation_accuracy": 0.625,
+          "validation_loss": 1.0617123718261718,
+          "training_wall_s": 9.047070599999643
+        },
+        {
+          "round": 23,
+          "validation_accuracy": 0.626,
+          "validation_loss": 1.0628545837402343,
+          "training_wall_s": 10.24907390000044
+        },
+        {
+          "round": 24,
+          "validation_accuracy": 0.633,
+          "validation_loss": 1.0449841766357422,
+          "training_wall_s": 9.086965800000144
+        },
+        {
+          "round": 25,
+          "validation_accuracy": 0.646,
+          "validation_loss": 1.0375907745361328,
+          "training_wall_s": 9.066872800000056
+        },
+        {
+          "round": 26,
+          "validation_accuracy": 0.654,
+          "validation_loss": 1.0141388244628906,
+          "training_wall_s": 9.456878900000447
+        },
+        {
+          "round": 27,
+          "validation_accuracy": 0.654,
+          "validation_loss": 1.0180205993652345,
+          "training_wall_s": 10.821411200000512
+        },
+        {
+          "round": 28,
+          "validation_accuracy": 0.669,
+          "validation_loss": 0.9904571228027343,
+          "training_wall_s": 9.732392100000652
+        },
+        {
+          "round": 29,
+          "validation_accuracy": 0.674,
+          "validation_loss": 0.9823013305664062,
+          "training_wall_s": 9.716247700000167
+        },
+        {
+          "round": 30,
+          "validation_accuracy": 0.674,
+          "validation_loss": 0.9766153564453125,
+          "training_wall_s": 9.211629800000082
+        }
+      ],
+      "data": {
+        "source": "torchvision.datasets.CIFAR10",
+        "subset_sha256": "043d74d4d391f1362a337f18d210ac2f55197f4945b781558ab1aff123ba11b0",
+        "split": "disjoint official-training subsets for train/validation; official test used only for final evaluation",
+        "train_indices_sha256": "93fec302a88981036f4037eb4a2f4665427518b0e1bedb89970e70c523a8a592",
+        "normalization_mean": [
+          0.49143490195274353,
+          0.4826568365097046,
+          0.4469153881072998
+        ],
+        "normalization_std": [
+          0.24700011312961578,
+          0.24321651458740234,
+          0.26167598366737366
+        ],
+        "partition_sizes": [
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000
+        ]
+      }
+    }
+  ],
+  "wall_s": 377.9137434999993,
+  "purpose": "All-client conventional FedAvg convergence diagnostic, not a scheduler comparison or infrastructure measurement"
+}

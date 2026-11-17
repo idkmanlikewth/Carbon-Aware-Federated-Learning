@@ -1,5 +1,7 @@
 * text=auto
 # Preserve the exact bytes used by evidence artifact SHA-256 manifests.
 evidence/** -text whitespace=cr-at-eol
+carma_evidence/** -text whitespace=cr-at-eol
+carma_inputs/** -text whitespace=cr-at-eol
 *.zip binary
 *.pt binary
