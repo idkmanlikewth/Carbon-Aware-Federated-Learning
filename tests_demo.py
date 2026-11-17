@@ -47,7 +47,7 @@ class ExecutionTests(unittest.TestCase):
             with (out/'per_round_SIMULATION.csv').open(encoding='utf-8-sig') as file:rows=list(csv.DictReader(file))
             self.assertEqual(len(rows),3*2*4)
             self.assertEqual({r['policy'] for r in rows},set(d.read_results('baseline')['summary'][i]['policy'] for i in range(4)))
-            html=(out/'dashboard.html').read_text()
+            html=(out/'dashboard.html').read_text(encoding='utf-8')
             self.assertNotIn('__BOOTSTRAP__',html)
             self.assertNotIn('19 NOVEMBER',html)
             self.assertNotIn('Evidence boundary',html)

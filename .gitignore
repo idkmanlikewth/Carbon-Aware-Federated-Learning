@@ -1,9 +1,13 @@
 # Python virtual environments & caches
 .venv/
+data/
+research_runs/
+*.pt
 venv/
 __pycache__/
 *.py[cod]
 .matplotlib/
+.pytest_cache/
 
 # Node / Frontend dependencies & build cache
 frontend/node_modules/

@@ -1,77 +1,65 @@
-# Federated Computing Lab
+# Carbon-Aware Federated Learning Research Lab
 
-**A Multi-Objective Reinforcement Learning Model for Optimizing the Latency–Carbon Trade-off in Federated Computing**
+Preference-conditioned Double DQN, adaptive multi-objective rewards, dynamic virtual clients, independent-seed experiments and an interactive research dashboard.
 
-A working Python simulation and local browser console. Run experiments, compare four selection policies, replay client participation, inspect exact parameters, and export a completed run.
+Accuracy comes from trained classifiers. Carbon, energy and infrastructure latency are modeled scenario estimates, not physical measurements. The included short runs verify execution and reproducibility; they do not establish convergence or DQN superiority.
 
-## Start on Windows
+## Install and launch
 
-1. Extract the whole project folder.
-2. Double-click **START_DEMO.bat**. The launcher reuses the installed `.venv`, or creates one using Python 3.10+ and installs NumPy and Matplotlib if needed.
-3. Keep the console window open. The browser opens automatically, normally at **http://127.0.0.1:8765/**. If that port is busy, the console prints the selected port.
-4. Choose **Quick demo**, then **Run Simulation**.
-
-First-time dependency setup needs internet. After setup, the app and simulation work offline. `START_WINDOWS.bat` opens the same app. Linux/macOS: run `bash START_DEMO.sh` with Python 3.10+ installed.
-
-## Demonstration flow
-
-- **Run:** choose a preset. Progress and log messages come from the Python process.
-- **Overview:** compare final accuracy, estimated latency, energy, carbon, and target hit rate.
-- **Charts:** inspect learning progress and the latency–carbon trade-off.
-- **Client replay:** select a policy and trial, then play its recorded client selections.
-- **Parameters:** inspect exact settings for the displayed results.
-- **Export run ZIP:** retain the CSVs, charts, parameter record, offline dashboard, and log.
-
-## Default parameters
-
-| Setting | Quick demo | Full experiment |
-|---|---:|---:|
-| Federated rounds | 12 | 20 |
-| RL training episodes | 35 | 130 |
-| Performance repeats | 3 | 5 |
-| Sensitivity samples | 12 | 70 |
-| Comparison target | 80% | 80% |
-| Local epochs | 2 | 2 |
-| Local learning rate | 0.23 | 0.23 |
-| Dataset seed | 42 | 42 |
-| Latency penalty | 0.018 | 0.018 |
-| Carbon penalty | 0.32 | 0.32 |
-
-Both presets use four clients, 250 training examples per client, 1,500 test examples, three classes, and two features plus a bias term. The model is a softmax linear classifier. Data are synthetic and non-IID; NumPy training runs on CPU.
-
-Tabular Q-learning uses alpha 0.24, gamma 0.86, epsilon starting at 0.80 with a 0.06 floor, four training phases, and five accuracy buckets. Eleven actions select subsets of two, three, or four clients. The comparison target controls target-hit reporting. The reward has a separate 78% accuracy floor.
-
-## Infrastructure parameters
-
-| Client | RAM | GPU VRAM descriptor | Speed ratio | Power ratio | Idle W | Network s |
-|---|---:|---:|---:|---:|---:|---:|
-| PC1 | 8 GB | — | 1.00 | 1.00 | 7 | 0.30 |
-| PC2 | 16 GB | — | 1.10 | 1.25 | 9 | 0.45 |
-| PC3 | 32 GB | 8 GB | 1.80 | 2.45 | 13 | 0.60 |
-| PC4 | 16 GB | 4 GB | 1.35 | 1.75 | 11 | 0.45 |
-
-The model uses 16 seconds of base client work, 0.45 seconds of aggregation, a 30 W coordinator, ±10% performance jitter, and a configured grid factor of 0.675 kg CO₂/kWh. Reference input: 0.065 kWh over 190 minutes. PC1 uses its mean power anchor; other profiles use scenario ratios. Provenance files retain source details. GPU memory describes hardware profiles and does not enable GPU training.
-
-Round latency is the longest selected client completion time plus aggregation. Energy includes active work, idle clients, and the coordinator. Wh multiplied by the grid factor in kg CO₂/kWh gives grams CO₂. Sensitivity scenarios vary power by ±35% and duration scaling by ±30% for clients 2–4.
-
-Accuracy is computed on synthetic test data. Infrastructure latency, energy and carbon are modeled. Performance repeats vary timing draws while sharing data and the trained policy. The app reports the resulting trade-off without assuming RL beats every baseline.
-
-## Files and reproducibility
-
-- `results/`: full default experiment and offline `dashboard.html`.
-- `runs/<run id>/`: app experiments, each with its log and `run_parameters.json`.
-- `config.json`: infrastructure settings and input provenance.
-- `DEMO_GUIDE.md`: short demonstration sequence.
-- `reference/`: earlier reference material, separate from the current demo.
-
-Command-line run:
+Python 3.11 recommended. Windows: double-click START_RESEARCH.bat (also the default START_DEMO.bat / START_WINDOWS.bat). Linux/macOS: bash START_DEMO.sh.
 
 ```bash
-python run_project.py --rounds 20 --episodes 130 --repeats 5 --sensitivity 70
+python -m venv .venv
+# Windows: .venv\Scripts\activate
+# Linux/macOS: source .venv/bin/activate
+python -m pip install -r requirements-research.txt
+python -m streamlit run research/dashboard.py --server.address 127.0.0.1
 ```
 
-Additional flags: `--target 0.80`, `--local-epochs 2`, `--learning-rate 0.23`, `--seed 42`, `--latency-weight 0.018`, `--carbon-weight 0.32`, and `--output PATH`.
+For CPU-only PyTorch, first install torch==2.5.1 torchvision==0.20.1 using the official CPU wheel index https://download.pytorch.org/whl/cpu. The engine runs on CPU with deterministic algorithms and one PyTorch thread.
 
-Checks: `python tests.py` and `python tests_demo.py`.
+Choose dataset, clients, training budget, independent seeds and ablations. Enable download for the first benchmark run. Completed evidence appears under Recorded run. Refresh runs while a job executes; exports include raw results, analysis, manifest and model checkpoints.
 
-Close the console or press Ctrl+C there to stop the app. A browser tab alone does not execute Python. The offline dashboard keeps completed results available after the engine stops.
+## Reproduce experiments
+
+```bash
+python -m research.run --dataset mnist --download --clients 10 --rounds 5 --episodes 8 --train-samples 1000 --eval-samples 200 --seeds 11 22 33 --output research_runs/mnist
+python -m research.run --dataset fashion-mnist --download --output research_runs/fashion
+python -m research.run --dataset cifar10 --download --output research_runs/cifar
+python -m research.run --dataset mnist --download --clients 100 --output research_runs/scale100
+```
+
+Use a new output directory for every run. Data are cached under data/ and excluded from Git. Missing benchmark data cause an explicit error; no synthetic substitution occurs. The synthetic dataset option is an explicitly labeled smoke fixture.
+
+Every independent seed regenerates subsets, Dirichlet non-IID partitions, classifier initialization, replay, policy training and infrastructure traces. Policies share evaluation data, model initialization and precomputed exogenous traces within a seed. Validation drives reward and adaptation; held-out test accuracy is evaluated only after the final round. Validation and final test are disjoint halves of a sampled official test subset; official training data supply clients.
+
+## Implemented methods
+
+- Preference-conditioned Double DQN: ten observation features plus four preference weights, a 64-by-64 MLP, replay, target network, Double DQN targets, terminal masking, Huber loss, gradient clipping and epsilon exploration.
+- Scalable actions: six rules rank available clients by random score, duration, modeled carbon, participation, dataset size or a balanced score. The DQN chooses a rule, which selects a fixed fraction of clients. Network size is independent of client count. This is a restricted scheduling action space, not enumeration of every possible subset.
+- Adaptive MORL: a declared feedback controller raises accuracy preference when validation accuracy falls behind a rising target, then renormalizes the simplex. Current and next preferences are stored for Bellman updates. The controller is heuristic, with no constraint guarantee.
+- Normalized reward: accuracy gain / 0.1, negative latency / 120 seconds, negative carbon / 5 grams and negative participation Gini. Clipping bounds components; every round records clipping and preferences. Bounds are fixed before evaluation.
+- Pareto/hypervolume: exact three-objective analysis maximizes final test accuracy and minimizes cumulative normalized latency and carbon. The fixed maximization reference is (0, -1, -1). Out-of-reference points are reported and excluded, without silently clipping costs. Fairness is reported and rewarded outside this three-objective hypervolume.
+- Statistics: independent-seed hypervolume, means, 95% Student-t intervals, paired two-sided t tests against adaptive DQN, Holm correction and paired standardized effects. Preferences within a seed are not independent replicates. Three seeds are low power.
+
+Eight policies run by default: adaptive DQN; fixed preference (no adaptation); unconditioned DQN; static-intensity training; raw rewards; random; carbon greedy; participation fairness. Each learned ablation changes one feature relative to adaptive DQN. All evaluate under the same dynamic conditions.
+
+## Verification and evidence
+
+```bash
+python -m pytest tests/test_research.py tests/test_dashboard.py -q
+python tests.py
+python tests_demo.py
+python tests_pipeline.py
+cd frontend
+npm ci
+npm run build
+```
+
+CI checks research tests, dashboard rendering, the existing pipeline and the frontend build. Executed evidence under evidence/ includes manifests, dataset hashes, source digests, versions, artifact hashes, traces, results, analysis and checkpoints. The recorded pre-upgrade commit and dirty flag reflect when experiments actually ran; the source digest identifies the engine used.
+
+See [research protocol](docs/RESEARCH_PROTOCOL.md) and [executed verification report](docs/VERIFICATION.md).
+
+The prior NumPy demo and React console remain available through python demo_server.py or START_LEGACY.bat / START_LEGACY.sh. Their synthetic results and historical provenance belong to that legacy demo, and are not consumed by the research engine. See [legacy instructions](docs/LEGACY_DEMO.md).
+
+Implementation references: [PyTorch DQN tutorial](https://docs.pytorch.org/tutorials/intermediate/reinforcement_q_learning), [Fashion-MNIST loader](https://docs.pytorch.org/vision/main/generated/torchvision.datasets.FashionMNIST.html), [CIFAR-10 loader](https://docs.pytorch.org/vision/stable/generated/torchvision.datasets.CIFAR10.html).

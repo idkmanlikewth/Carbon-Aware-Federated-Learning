@@ -1,9 +1,12 @@
-FEDERATED COMPUTING LAB
+CARBON-AWARE FEDERATED LEARNING RESEARCH LAB
 
-Windows: double-click START_DEMO.bat.
-Keep the console open. The browser opens the live experiment console.
-Choose Quick demo, then click Run Simulation.
-Use Parameters to show the exact settings and Client replay to explain each round.
+Windows: double-click START_RESEARCH.bat (Python 3.11 recommended).
+Linux/macOS: bash START_DEMO.sh.
+Choose a dataset and enable download for the first benchmark run.
+Existing completed evidence is listed under Recorded run.
+Use Refresh runs to inspect progress. Keep the console open.
 
-Completed results also open offline in results/dashboard.html.
-See DEMO_GUIDE.md and README.md for instructions.
+Accuracy is computed from trained classifiers. Infrastructure energy, carbon
+and latency are simulated estimates, not physical measurements.
+See README.md, docs/RESEARCH_PROTOCOL.md and docs/VERIFICATION.md.
+Legacy console: python demo_server.py.

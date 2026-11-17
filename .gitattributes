@@ -1,0 +1,5 @@
+* text=auto
+# Preserve the exact bytes used by evidence artifact SHA-256 manifests.
+evidence/** -text
+*.zip binary
+*.pt binary

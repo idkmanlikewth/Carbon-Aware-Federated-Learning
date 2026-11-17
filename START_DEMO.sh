@@ -2,8 +2,8 @@
 set -euo pipefail
 cd -- "$(dirname -- "$0")"
 if [[ ! -x .venv/bin/python ]]; then python3 -m venv .venv; fi
-if ! .venv/bin/python -c 'import numpy,matplotlib' >/dev/null 2>&1; then
-  .venv/bin/python -m pip install --disable-pip-version-check -r requirements.txt
+if ! .venv/bin/python -c 'import torch,torchvision,scipy,streamlit,plotly' >/dev/null 2>&1; then
+  .venv/bin/python -m pip install --disable-pip-version-check -r requirements-research.txt
 fi
 export MPLCONFIGDIR="$PWD/.matplotlib"
-exec .venv/bin/python demo_server.py
+exec .venv/bin/python -m streamlit run research/dashboard.py --server.address 127.0.0.1
