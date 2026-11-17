@@ -13,12 +13,14 @@ python -m venv .venv
 # Windows: .venv\Scripts\activate
 # Linux/macOS: source .venv/bin/activate
 python -m pip install -r requirements-research.txt
-python -m streamlit run research/dashboard.py --server.address 127.0.0.1
+python demo_server.py
 ```
 
 For CPU-only PyTorch, first install torch==2.5.1 torchvision==0.20.1 using the official CPU wheel index https://download.pytorch.org/whl/cpu. The engine runs on CPU with deterministic algorithms and one PyTorch thread.
 
-Choose dataset, clients, training budget, independent seeds and ablations. Enable download for the first benchmark run. Completed evidence appears under Recorded run. Refresh runs while a job executes; exports include raw results, analysis, manifest and model checkpoints.
+The original cream-and-vermilion React workbench remains the default at http://127.0.0.1:8765. Its four plates and topology replay retain their original design. Open **8-Layer MORL Pipeline → Preference-Conditioned DQN Research** for the upgraded engine, or navigate directly to `/research`. Choose dataset, clients, training budget, independent seeds and ablations. Enable download for the first benchmark run. Results and logs refresh automatically; exports include raw results, analysis, manifest and checkpoints. Research execution requires the local Python server; the existing serverless demo is unchanged.
+
+The optional Streamlit analysis interface remains available through `python -m streamlit run research/dashboard.py`; the default launchers open the original React workbench.
 
 ## Reproduce experiments
 
@@ -47,7 +49,7 @@ Eight policies run by default: adaptive DQN; fixed preference (no adaptation); u
 ## Verification and evidence
 
 ```bash
-python -m pytest tests/test_research.py tests/test_dashboard.py -q
+python -m pytest tests/test_research.py tests/test_dashboard.py tests/test_workbench.py -q
 python tests.py
 python tests_demo.py
 python tests_pipeline.py

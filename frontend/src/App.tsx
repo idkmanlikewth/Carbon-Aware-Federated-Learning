@@ -13,6 +13,7 @@ import {
 import { ParetoChart, TrajectoryChart } from './components/Charts';
 import { LandingPage } from './components/LandingPage';
 import { PipelineStudio } from './components/PipelineStudio';
+import { ResearchStudio } from './components/ResearchStudio';
 import { TopologyReplay } from './components/TopologyReplay';
 
 const FULL: SimSettings = {
@@ -64,6 +65,7 @@ const PATH_TO_VIEW: Record<string, ViewId> = {
   '/index.html': 'landing',
   '/overview': 'overview',
   '/pipeline': 'pipeline',
+  '/research': 'pipeline',
   '/replay': 'replay',
   '/specs': 'specs',
 };
@@ -92,6 +94,7 @@ export default function App() {
   });
   const [results, setResults] = useState<SimulationResults | null>(null);
   const [pipeline, setPipeline] = useState<PipelineResults | null>(null);
+  const [researchMode, setResearchMode] = useState(window.location.pathname === '/research');
   const [error, setError] = useState('');
 
   const [chartTab, setChartTab] = useState<'tradeoff' | 'accuracy' | 'latency' | 'carbon' | 'png'>('tradeoff');
@@ -347,7 +350,13 @@ export default function App() {
     },
   ];
   const activeIdx = Math.max(0, navItems.findIndex((n) => n.id === view));
-  const currentStep = navItems[activeIdx] ?? navItems[0];
+  const currentStep = researchMode && view === 'pipeline' ? {
+    ...navItems[activeIdx],
+    heading: 'Preference-Conditioned DQN & Multi-Seed Research',
+    sub: 'Run independent benchmark experiments, inspect normalized objectives, and replay dynamic virtual-client participation.',
+    theoryTitle: 'Analytical Mechanism: Preference-Conditioned Double DQN & Adaptive Scalarization',
+    theoryBody: 'A preference-conditioned network selects among six dynamic ranking rules. Each seed independently trains its policy and classifier. Validation guides rewards; final test data remain held out. Hypervolume compares accuracy, modeled latency and modeled carbon with a fixed reference. Infrastructure values are scenarios, not physical measurements.',
+  } : navItems[activeIdx] ?? navItems[0];
 
   const r = results?.parameters.run;
   const t = results?.parameters.training;
@@ -850,14 +859,18 @@ export default function App() {
                 exit={{ opacity: 0, y: -4 }}
                 transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
               >
-                <PipelineStudio
+                <div className="research-switch" role="group" aria-label="Pipeline workspace">
+                  <button className={researchMode ? 'btn-tune' : 'btn-run'} onClick={() => setResearchMode(false)}>8-Layer Architecture</button>
+                  <button className={researchMode ? 'btn-run' : 'btn-tune'} onClick={() => setResearchMode(true)}>Preference-Conditioned DQN Research</button>
+                </div>
+                {researchMode ? <ResearchStudio offline={offline} /> : <PipelineStudio
                   data={pipeline}
                   offline={offline}
                   onRun={async (cfg: PipelineConfig) => {
                     const res = await api<PipelineResults>('/api/pipeline/run', cfg);
                     setPipeline(res);
                   }}
-                />
+                />}
               </motion.section>
             )}
 
@@ -1122,7 +1135,7 @@ export default function App() {
           </div>
 
           <footer className="footer-note">
-            <span>Federated Computing Lab · Synthetic non-IID training data · PC1 physical meter anchor (0.065 kWh / 190 min) · Modeled PC2–PC4 scenarios</span>
+            <span>{researchMode && view === 'pipeline' ? 'Federated Computing Lab · Independent-seed benchmark subsets · Simulated virtual-client infrastructure · No physical measurements collected' : 'Federated Computing Lab · Synthetic non-IID training data · PC1 physical meter anchor (0.065 kWh / 190 min) · Modeled PC2–PC4 scenarios'}</span>
             <span className="num">SEED {r?.seed ?? 42}</span>
           </footer>
         </main>

@@ -150,9 +150,25 @@ class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
         path=urlparse(self.path)
         try:
-            if path.path in ('/','/index.html','/overview','/pipeline','/replay','/specs'):
+            if path.path in ('/','/index.html','/overview','/pipeline','/replay','/specs','/research'):
                 html=(BASE/'web'/'index.html').read_text(encoding='utf-8').replace('__BOOTSTRAP__','null')
                 return self.send(200,html,'text/html; charset=utf-8')
+            if path.path.startswith('/api/research/'):
+                from research import service
+                query=parse_qs(path.query)
+                if path.path=='/api/research/runs':return self.send(200,service.list_runs())
+                if path.path=='/api/research/state':return self.send(200,service.state())
+                identifier=query.get('id',[''])[0]
+                if path.path=='/api/research/result':return self.send(200,service.detail(identifier))
+                if path.path=='/api/research/export':
+                    folder=service.folder_for(identifier)
+                    service.detail(identifier)
+                    buffer=io.BytesIO()
+                    with zipfile.ZipFile(buffer,'w',zipfile.ZIP_DEFLATED) as archive:
+                        for file in folder.iterdir():
+                            if file.is_file():archive.write(file,file.name)
+                    return self.send(200,buffer.getvalue(),'application/zip',{'Content-Disposition':'attachment; filename="Research_Evidence.zip"'})
+                return self.send(404,{'error':'Research route not found.'})
             if path.path=='/api/state':
                 with LOCK:data={k:v for k,v in STATE.items() if k not in ('process','cancel_requested')}
                 return self.send(200,data)
@@ -220,6 +236,9 @@ class Handler(BaseHTTPRequestHandler):
             length=int(self.headers.get('Content-Length','0'))
             if not 0<length<12000:return self.send(400,{'error':'Invalid request size.'})
             raw=json.loads(self.rfile.read(length))
+            if self.path in ('/api/research/run','/api/research/cancel'):
+                from research import service
+                return self.send(202,service.start(raw)) if self.path.endswith('/run') else self.send(200,service.cancel())
             if self.path=='/api/run':
                 values=validate_settings(raw)
                 with LOCK:
@@ -258,6 +277,8 @@ def main():
     try:server.serve_forever()
     except KeyboardInterrupt:pass
     finally:
+        from research import service
+        service.cancel()
         with LOCK:
             process=STATE['process']
             if process and process.poll() is None:process.terminate()

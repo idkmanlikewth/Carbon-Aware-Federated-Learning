@@ -10,7 +10,7 @@ jobs:
           python-version: '3.11'
           cache: pip
       - run: pip install -r requirements-research.txt
-      - run: python -m pytest tests/test_research.py tests/test_dashboard.py -q
+      - run: python -m pytest tests/test_research.py tests/test_dashboard.py tests/test_workbench.py -q
       - run: python tests.py && python tests_demo.py && python tests_pipeline.py
       - run: python -m research.verify evidence
   frontend:

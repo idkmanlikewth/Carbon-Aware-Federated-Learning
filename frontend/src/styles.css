@@ -26,6 +26,30 @@
   --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
+/* Research tools inherit the original monograph palette, borders and typography. */
+.research-switch, .research-actions, .research-options {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 12px;
+  margin: 12px 0;
+}
+.research-studio .panel { margin-bottom: 14px; padding: 16px; }
+.research-controls { display: flex; align-items: end; flex-wrap: wrap; gap: 12px; margin: 14px 0; }
+.research-controls label { display: grid; gap: 5px; font-size: 11px; flex: 1 1 125px; }
+.research-controls input, .research-controls select {
+  width: 100%; min-width: 0; background: var(--bg); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 7px 9px; font-size: 12px;
+}
+.research-options, .research-actions { font-size: 11px; }
+.research-options label, .research-actions label { display: inline-flex; align-items: center; gap: 5px; }
+.research-chart { width: 100%; display: block; max-height: 350px; background: var(--bg); border: 1px solid var(--line); }
+.research-chart text { font: 10px var(--mono); fill: var(--ink-dim); }
+.research-log { max-height: 300px; overflow: auto; white-space: pre-wrap; overflow-wrap: anywhere; font: 11px/1.6 var(--mono); }
+.research-studio details { margin-top: 12px; font-size: 12px; }
+.research-studio summary { cursor: pointer; }
+.research-client-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 8px; }
+.research-client { border: 1px solid var(--line); background: var(--bg); padding: 8px; display: grid; gap: 4px; font-size: 10px; }
+.research-client.selected { border-color: var(--accent); background: var(--accent-soft); }
+.research-client.offline { opacity: .5; }
+
 * {
   box-sizing: border-box;
 }

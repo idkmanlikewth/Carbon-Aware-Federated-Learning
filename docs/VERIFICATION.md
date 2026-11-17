@@ -83,3 +83,9 @@ Each manifest records seed/configuration, independent subset hashes, software ve
 CIFAR-10 was fetched from the MIT Open Learning mirror after a slow official-host download was stopped before training. The archive matched torchvision's official MD5 before extraction; see evidence/DOWNLOADS.json. Official training/test files are not committed. environment-lock.txt records the installed environment; CPU PyTorch wheels require the official CPU index noted in the README.
 
 Reproduce: use the exact config in each manifest with a new output directory. Verify without retraining: python -m research.verify evidence. Regenerate this report: python -m research.report.
+
+## Original workbench integration
+
+The original cream-and-vermilion React interface is again the default. Four-plate navigation and topology replay retain their original design. The pipeline plate includes an optional Preference-Conditioned DQN Research workspace using the same typography, borders and palette. Launch with python demo_server.py or START_DEMO.bat; the separate Streamlit viewer remains optional.
+
+The HTTP integration test starts a real synthetic research job through the workbench API, checks startup/completion state, reads results, exports its evidence ZIP, rejects invalid settings and traversal paths, and cancels a running job. All 38 local tests pass, and the TypeScript/Vite production build succeeds. Browser inspection confirmed the original topology replay controls and integrated 100-client research display. These UI checks do not modify the six recorded benchmark configurations above.

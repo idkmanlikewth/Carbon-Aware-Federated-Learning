@@ -6,4 +6,4 @@ if ! .venv/bin/python -c 'import torch,torchvision,scipy,streamlit,plotly' >/dev
   .venv/bin/python -m pip install --disable-pip-version-check -r requirements-research.txt
 fi
 export MPLCONFIGDIR="$PWD/.matplotlib"
-exec .venv/bin/python -m streamlit run research/dashboard.py --server.address 127.0.0.1
+exec .venv/bin/python demo_server.py

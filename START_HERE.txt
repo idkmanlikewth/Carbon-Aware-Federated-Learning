@@ -2,11 +2,13 @@ CARBON-AWARE FEDERATED LEARNING RESEARCH LAB
 
 Windows: double-click START_RESEARCH.bat (Python 3.11 recommended).
 Linux/macOS: bash START_DEMO.sh.
+The original four-plate workbench opens at http://127.0.0.1:8765.
+Open 8-Layer MORL Pipeline, then Preference-Conditioned DQN Research.
 Choose a dataset and enable download for the first benchmark run.
-Existing completed evidence is listed under Recorded run.
-Use Refresh runs to inspect progress. Keep the console open.
+Existing evidence is listed under Recorded run; progress refreshes automatically.
+Keep the console open. Topology Replay retains the original interface.
 
 Accuracy is computed from trained classifiers. Infrastructure energy, carbon
 and latency are simulated estimates, not physical measurements.
 See README.md, docs/RESEARCH_PROTOCOL.md and docs/VERIFICATION.md.
-Legacy console: python demo_server.py.
+Optional separate analysis viewer: python -m streamlit run research/dashboard.py.
