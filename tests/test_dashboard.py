@@ -15,7 +15,8 @@ def test_dashboard_renders_and_switches_tabs():
         recorded.select(completed[0]).run()
         assert len(app.tabs) == 5
         assert len(app.dataframe) >= 2
-        app.selectbox(key="pareto_seed").select(22).run()
+        run_seeds = json.loads(completed[0].read_text())["config"]["seeds"]
+        app.selectbox(key="pareto_seed").select(run_seeds[-1]).run()
         assert not app.exception
 
 
